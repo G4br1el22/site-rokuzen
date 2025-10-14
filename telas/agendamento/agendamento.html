@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agendamento • Rokuzen</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/agendamento.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="imgaens/logo.png" alt="Rokuzen logo" class="logo">
+    </div>
+
+    <nav class="menu">
+      <a class="menu-item active" href="/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a>
+      <a class="menu-item" href="/telas/agendamento/">Agendamento</a>
+      <a class="menu-item" href="/telas/salas/salas.html">Salas</a>
+      <a class="menu-item" href="#">Escala</a>
+      <div class="avatar" title="Perfil">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#EAF0E1"/>
+          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2"/>
+          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2"/>
+        </svg>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="toolbar">
+      <div class="left-controls">
+        <button id="btn-today" class="pill">Hoje</button>
+        <div class="nav-arrows">
+          <button id="prev" class="circle-btn">←</button>
+          <button id="next" class="circle-btn">→</button>
+        </div>
+        <div class="date-title" id="dateTitle">—</div>
+      </div>
+
+      <div class="right-controls">
+        <div class="view-switch">
+          <button class="pill view-btn active" data-view="day">Dia</button>
+          <button class="pill view-btn" data-view="week">Semana</button>
+          <button class="pill view-btn" data-view="month">Mês</button>
+        </div>
+        <button id="btn-new" class="pill new-btn">+ Novo</button>
+      </div>
+    </section>
+
+    <section class="agenda-wrapper">
+      <div class="agenda-outer">
+        <div class="day-left">
+          <div class="day-label">HOJE</div>
+          <div class="day-number" id="dayNumber">3</div>
+        </div>
+        <div class="agenda-content" id="agendaContent"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Novo Agendamento -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <h3>Novo Agendamento</h3>
+      <form id="eventForm">
+        <label>
+          Título
+          <input type="text" name="title" required placeholder="Ex: Josué Azevedo – Reflexologia (Sala 03)">
+        </label>
+
+        <label>
+          Data
+          <input type="date" name="date" required>
+        </label>
+
+        <label>
+          Início
+          <input type="time" name="start" required>
+        </label>
+
+        <label>
+          Duração (horas)
+          <input type="number" name="duration" min="0.25" step="0.25" value="1" required>
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel" class="pill">Cancelar</button>
+          <button type="submit" class="pill primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Edição -->
+  <div id="editModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <h3>Editar Agendamento</h3>
+      <form id="editForm">
+        <input type="hidden" name="id">
+        <label>
+          Título
+          <input type="text" name="title" required>
+        </label>
+
+        <label>
+          Data
+          <input type="date" name="date" required>
+        </label>
+
+        <label>
+          Início
+          <input type="time" name="start" required>
+        </label>
+
+        <label>
+          Duração (horas)
+          <input type="number" name="duration" min="0.25" step="0.25" required>
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-delete" class="pill danger">Excluir</button>
+          <button type="button" id="btn-edit-cancel" class="pill">Cancelar</button>
+          <button type="submit" class="pill primary">Salvar</button>
+        </div>
+
+  <div id="editModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <h3>Editar Agendamento</h3>
+      <form id="editForm">
+        <input type="hidden" name="id">
+        <label>
+          Título
+          <input type="text" name="title" required>
+        </label>
+
+        <label>
+          Data
+          <input type="date" name="date" required>
+        </label>
+
+        <label>
+          Início
+          <input type="time" name="start" required>
+        </label>
+
+        <label>
+          Duração (horas)
+          <input type="number" name="duration" min="0.25" step="0.25" required>
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-delete" class="pill danger">Excluir</button>
+          <button type="button" id="btn-edit-cancel" class="pill">Cancelar</button>
+          <button type="submit" class="pill primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <script src="/assets/agendamento.js"></script>
+</body>
+</html>

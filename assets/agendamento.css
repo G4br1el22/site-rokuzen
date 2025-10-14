@@ -1,0 +1,221 @@
+/* Reset simples */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; }
+
+:root{
+  --bg: #fafbee;
+  --green-dark:#4c5f32;
+  --green-mid:#556533;
+  --green-soft:#dce9b7;
+  --text:#2f3b24;
+}
+
+/* Body */
+body{
+  background: var(--bg);
+  font-family: 'Albert Sans', sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  padding: 18px 36px;
+}
+
+/* Topbar */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 6px 8px;
+}
+.brand .logo{
+  height:54px;
+  /* placeholder */
+  filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+}
+.menu{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.menu .menu-item{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  padding:6px 8px;
+  border-radius:8px;
+}
+.menu .menu-item.active{
+  /* leve destaque */
+  background: rgba(84,102,54,0.08);
+}
+.avatar{ width:40px; height:40px; border-radius:50%; overflow:hidden; }
+
+/* Main layout */
+.main{
+  margin-top: 14px;
+}
+
+/* Toolbar */
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+.left-controls{ display:flex; align-items:center; gap:12px; }
+.right-controls{ display:flex; align-items:center; gap:16px; }
+
+.pill{
+  background: #e9f0d6;
+  border: none;
+  padding: 8px 14px;
+  border-radius:20px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--green-dark);
+  box-shadow: none;
+}
+.pill:focus{ outline: none; box-shadow: 0 0 0 3px rgba(80,110,50,0.07); }
+
+.circle-btn{
+  width:46px; height:46px; border-radius:50%;
+  border:2px solid var(--green-dark);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:18px; background:transparent; cursor:pointer; color:var(--green-dark);
+}
+.circle-btn:focus{ outline:none; }
+
+/* date title */
+.date-title{
+  font-weight:600;
+  color:var(--green-dark);
+}
+
+/* view switch pills - keep appearance unchanged when active */
+.view-switch{ display:flex; gap:8px; }
+.view-btn.active{ box-shadow:none; } /* visual unchanged */
+
+/* New button */
+.new-btn{ background:#e6f0c7; border-radius:12px; padding:10px 18px; }
+
+/* Agenda outer container (green border + rounded) */
+.agenda-wrapper{ margin-top:12px; }
+.agenda-outer{
+  background: var(--green-mid);
+  border-radius:10px;
+  padding:10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+
+/* Left day block */
+.day-left{
+  width:78px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.day-label{
+  color:white;
+  background: transparent;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.day-number{
+  width:36px; height:36px; border-radius:50%;
+  background:var(--green-soft); display:flex; align-items:center; justify-content:center;
+  font-weight:700; color:var(--green-dark);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
+}
+
+/* Agenda content (white card with hours and events) */
+.agenda-content{
+  background: #fff;
+  border-radius:8px;
+  width:100%;
+  min-height:420px;
+  padding:12px 14px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* grid of hours */
+.hour-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid #eef2f5;
+  padding:10px 6px;
+  color:#6b6f74;
+  font-size:14px;
+}
+.hour-time{
+  width:70px;
+  font-weight:600;
+  color:#889089;
+}
+
+/* event block (positioned absolutely in agenda-content) */
+.event{
+  position:absolute;
+  left:90px; /* after the time column */
+  right:16px;
+  height:42px;
+  border-radius:10px;
+  background: linear-gradient(180deg, #e9f7c7, #d8ee9a);
+  color:var(--green-dark);
+  display:flex;
+  align-items:center;
+  padding:8px 14px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  font-weight:600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* Modal */
+.modal{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(10,12,8,0.35);
+  z-index:200;
+}
+.hidden{ display:none; }
+.modal-card{
+  background:#fff;
+  padding:18px;
+  width:360px;
+  border-radius:12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.modal-card h3{ font-family:'Bayon', sans-serif; margin-bottom:10px; color:var(--green-dark); }
+.modal-card label{ display:block; font-size:13px; margin:8px 0; color:#556a3e; }
+.modal-card input[type="text"],
+.modal-card input[type="date"],
+.modal-card input[type="time"],
+.modal-card input[type="number"]{
+  width:100%;
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #e6ead1;
+  margin-top:6px;
+}
+
+/* modal actions */
+.modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:10px; }
+.pill.primary{ background: var(--green-mid); color:#fff; }
+
+/* Responsividade básica */
+@media (max-width:900px){
+  .agenda-outer{ flex-direction:column; }
+  .day-left{ width:100%; flex-direction:row; gap:12px; padding:8px 6px; align-items:center; }
+  .agenda-content{ min-height: 360px; }
+  .hour-time{ width:56px; font-size:13px; }
+  .event{ left:80px; }
+}
