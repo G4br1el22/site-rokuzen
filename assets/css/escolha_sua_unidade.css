@@ -1,5 +1,5 @@
 
-/* Importação e reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,6 @@
     color: #4c5f32;
   }
   
-  /* Container principal */
   .container {
     width: 100%;
     min-height: 100vh;
@@ -23,12 +22,33 @@
     justify-content: space-between;
   }
   
-  /* Cabeçalho */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 6px 8px;
+}
+.brand .logo{
+  height:54px;
+  filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+}
+.menu{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.menu .menu-item{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  padding:6px 8px;
+  border-radius:8px;
+}
+.menu .menu-item.active{
+  background: rgba(84,102,54,0.08);
+}
+.avatar{ width:40px; height:40px; border-radius:50%; overflow:hidden; }
+
   
   .logo {
     height: 45px;
@@ -40,7 +60,7 @@
     border-radius: 50%;
   }
   
-  /* Conteúdo */
+ 
   main {
     display: flex;
     align-items: flex-start;
@@ -69,7 +89,7 @@
     font-weight: 500;
   }
   
-  /* Cards */
+  
   .cards {
     display: flex;
     gap: 25px;
@@ -119,7 +139,7 @@
     margin-top: 3px;
   }
   
-  /* Rodapé */
+  
   footer {
     display: flex;
     justify-content: space-between;

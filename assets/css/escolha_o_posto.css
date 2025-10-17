@@ -1,4 +1,4 @@
-/* Importação e reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,6 @@
     color: #4c5f32;
   }
   
-  /* Container principal */
   .container {
     width: 100%;
     min-height: 100vh;
@@ -22,7 +21,6 @@
     justify-content: space-between;
   }
   
-  /* Cabeçalho */
   header {
     display: flex;
     justify-content: space-between;
@@ -39,7 +37,6 @@
     border-radius: 50%;
   }
   
-  /* Conteúdo */
   main {
     display: flex;
     align-items: flex-start;
@@ -68,7 +65,6 @@
     font-weight: 500;
   }
   
-  /* Cards */
   .cards {
     display: flex;
     gap: 25px;
@@ -118,7 +114,6 @@
     margin-top: 3px;
   }
   
-  /* Rodapé */
   footer {
     display: flex;
     justify-content: space-between;
