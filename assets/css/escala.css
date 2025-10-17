@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #d2ebaf;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  background: transparent;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #23320b;
+}
+
+.logo span {
+  color: #5b7f1d;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #2e2e2e;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+nav a.active,
+nav a:hover {
+  background-color: white;
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+}
+
+/* Layout principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #2f4016;
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 220px;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.therapist {
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.therapist.active {
+  background-color: white;
+  color: #2f4016;
+}
+
+.therapist:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Agenda */
+.schedule {
+  background: #f7f8e9;
+  border-radius: 15px;
+  padding: 15px;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.schedule table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schedule td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.event {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.event.green {
+  background-color: #c6ecb6;
+  color: #365e1e;
+}
+
+.event.orange {
+  background-color: #ffe1b3;
+  color: #7a4300;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .therapist {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+}
