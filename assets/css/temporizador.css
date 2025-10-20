@@ -9,48 +9,61 @@ body {
 
 header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 15px 40px;
+  align-items: center;
+  padding: 15px 30px;
 }
 
-.logo {
-  width: 120px;
-  height: auto;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.search-bar {
+.brand .logo {
+  height: 54px;
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+
+.menu {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.search-bar input {
-  padding: 8px 12px;
-  border: 1px solid #c9c9c9;
-  border-radius: 20px;
-  outline: none;
-  font-size: 14px;
-  background-color: #fffef7;
+.menu .menu-item {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 8px;
 }
 
-.search-bar button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
+.menu .menu-item.active {
+  background: rgba(84, 102, 54, 0.08);
 }
 
-.user-icon {
-  width: 35px;
-  height: 35px;
+.avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.2s;
+  overflow: hidden;
 }
 
-.user-icon:hover {
-  transform: scale(1.05);
+
+.logo {
+  height: 45px;
+}
+
+.perfil {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
 }
 
 /* Conteúdo central */
