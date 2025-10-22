@@ -19,3 +19,14 @@ para a ROKUZEN.
 - CSS
 - JavaScript
 - MySQL
+
+## Instruções para a conexão com o DB
+- Crie um arquivo ".env" para adicionar as informações do seu DB
+- Deve seguir o seguinte modelo:
+    DB_HOST= "localhost"
+    DB_USER= "root"
+    DB_PASSWORD= "sua_senha"
+    DB_NAME="seu_schema"
+    DB_PORT= "3306"
+    PORT= "3000"    
+- Para fazer o commit, coloque o ".env" no ".gitignore"
