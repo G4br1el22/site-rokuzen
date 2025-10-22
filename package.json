@@ -1,0 +1,27 @@
+{
+  "name": "site-rokuzen",
+  "version": "1.0.0",
+  "description": "Esse repositório tem como objetivo desenvolver um site de agendamentos online de massagens\r para a ROKUZEN.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G4br1el22/site-rokuzen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/G4br1el22/site-rokuzen/issues"
+  },
+  "homepage": "https://github.com/G4br1el22/site-rokuzen#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mysql2": "^3.15.3"
+  }
+}
