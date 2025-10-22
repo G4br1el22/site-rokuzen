@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Agendamento • Rokuzen</title>
 
   <!-- Fontes -->
-  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@300;400;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/agendamento.css">
 </head>
+
 <body>
   <header class="topbar">
     <div class="brand">
@@ -22,9 +25,9 @@
       <a class="menu-item" href="/telas/escala/escala.html">Escala</a>
       <div class="avatar" title="Perfil">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="12" fill="#EAF0E1"/>
-          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2"/>
-          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2"/>
+          <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
         </svg>
       </div>
     </nav>
@@ -62,7 +65,6 @@
     </section>
   </main>
 
-  <!-- Modal Novo Agendamento -->
   <div id="modal" class="modal hidden" aria-hidden="true">
     <div class="modal-card">
       <h3>Novo Agendamento</h3>
@@ -95,7 +97,6 @@
     </div>
   </div>
 
-  <!-- Modal Edição -->
   <div id="editModal" class="modal hidden" aria-hidden="true">
     <div class="modal-card">
       <h3>Editar Agendamento</h3>
@@ -127,41 +128,53 @@
           <button type="submit" class="pill primary">Salvar</button>
         </div>
 
-  <div id="editModal" class="modal hidden" aria-hidden="true">
-    <div class="modal-card">
-      <h3>Editar Agendamento</h3>
-      <form id="editForm">
-        <input type="hidden" name="id">
-        <label>
-          Título
-          <input type="text" name="title" required>
-        </label>
+        <div id="editModal" class="modal hidden" aria-hidden="true">
+          <div class="modal-card">
+            <h3>Editar Agendamento</h3>
+            <form id="editForm">
+              <input type="hidden" name="id">
+              <label>
+                Título
+                <input type="text" name="title" required>
+              </label>
 
-        <label>
-          Data
-          <input type="date" name="date" required>
-        </label>
+              <label>
+                Data
+                <input type="date" name="date" required>
+              </label>
 
-        <label>
-          Início
-          <input type="time" name="start" required>
-        </label>
+              <label>
+                Início
+                <input type="time" name="start" required>
+              </label>
 
-        <label>
-          Duração (horas)
-          <input type="number" name="duration" min="0.25" step="0.25" required>
-        </label>
+              <label>
+                Duração (horas)
+                <input type="number" name="duration" min="0.25" step="0.25" required>
+              </label>
 
-        <div class="modal-actions">
-          <button type="button" id="btn-delete" class="pill danger">Excluir</button>
-          <button type="button" id="btn-edit-cancel" class="pill">Cancelar</button>
-          <button type="submit" class="pill primary">Salvar</button>
+              <div class="modal-actions">
+                <button type="button" id="btn-delete" class="pill danger">Excluir</button>
+                <button type="button" id="btn-edit-cancel" class="pill">Cancelar</button>
+                <button type="submit" class="pill primary">Salvar</button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-  
 
-  <script src="/assets/agendamento.js"></script>
+        <!--Vlibras-->
+        <div vw class="enabled">
+          <div vw-access-button class="active"></div>
+          <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+          </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+          new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+
+        <script src="/assets/js/agendamento.js"></script>
 </body>
+
 </html>

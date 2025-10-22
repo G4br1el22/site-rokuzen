@@ -1,7 +1,3 @@
-/* script.js
- - controla navegação de dias, views (dia/semana/mês), modal e armazenamento de eventos
- - eventos são salvos em localStorage sob a chave "rz_events"
-*/
 
 const btnToday = document.getElementById('btn-today');
 const btnPrev = document.getElementById('prev');
@@ -15,10 +11,10 @@ const eventForm = document.getElementById('eventForm');
 const btnCancel = document.getElementById('btn-cancel');
 const viewBtns = document.querySelectorAll('.view-btn');
 
-let viewMode = 'day'; // day | week | month
-let currentDate = new Date(); // data mostrada
+let viewMode = 'day'; 
+let currentDate = new Date(); 
 
-// carrega/guarda eventos no localStorage
+
 function loadEvents(){
   const raw = localStorage.getItem('rz_events');
   return raw ? JSON.parse(raw) : [];
@@ -27,20 +23,19 @@ function saveEvents(arr){
   localStorage.setItem('rz_events', JSON.stringify(arr));
 }
 
-// formatadores simples
+
 function formatDateTitle(d){
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   return d.toLocaleDateString('pt-BR', options);
 }
 function zero(n){ return n<10 ? '0'+n : String(n); }
 
-// renderiza a agenda (apenas visual day/grid de horas)
+
 function renderAgenda(){
-  // atualiza texto da data
+  
   dateTitle.textContent = formatDateTitle(currentDate);
   dayNumber.textContent = String(currentDate.getDate());
 
-  // limpar
   agendaContent.innerHTML = '';
 
   if(viewMode === 'month'){
@@ -55,7 +50,6 @@ function renderAgenda(){
 }
 
 function renderDayView(){
-  // constrói 24 linhas de hora (00:00 -> 23:00)
   for(let h=0; h<24; h++){
     const row = document.createElement('div');
     row.className = 'hour-row';
@@ -63,17 +57,17 @@ function renderDayView(){
     agendaContent.appendChild(row);
   }
 
-  // posicionar eventos do dia
+ 
   const events = loadEvents();
   const iso = currentDate.toISOString().slice(0,10);
   const eventsToday = events.filter(ev => ev.date === iso);
 
-  // cálculo de posição: cada hora linha tem certa altura; usamos altura média de row
+  
   const rows = agendaContent.querySelectorAll('.hour-row');
   const rowHeight = rows[0] ? rows[0].getBoundingClientRect().height : 52;
   eventsToday.forEach(ev => {
     const [hh, mm] = ev.start.split(':').map(n=>parseInt(n,10));
-    const top = (hh + mm/60) * rowHeight + 8; // offset de padding
+    const top = (hh + mm/60) * rowHeight + 8; 
     const height = Math.max(36, (ev.duration || 1) * rowHeight - 8);
     const div = document.createElement('div');
     div.className = 'event';
@@ -85,14 +79,13 @@ function renderDayView(){
 }
 
 function renderWeekView(){
-  // simples grid: 7 colunas com nome do dia e pequenas entradas (resumo)
   const header = document.createElement('div');
   header.style.display = 'flex';
   header.style.gap = '8px';
   header.style.marginBottom = '8px';
 
   const start = new Date(currentDate);
-  // ajustar para o início da semana (segunda = 1); aqui consideramos segunda como início
+ 
   const day = start.getDay();
   const diff = (day === 0) ? -6 : (1 - day);
   start.setDate(start.getDate() + diff);
@@ -112,7 +105,7 @@ function renderWeekView(){
     title.textContent = d.toLocaleDateString('pt-BR',{weekday:'short', day:'numeric'});
     col.appendChild(title);
 
-    // colocar lista de eventos do dia
+   
     const evs = loadEvents().filter(e => e.date === d.toISOString().slice(0,10));
     evs.forEach(e => {
       const li = document.createElement('div');
@@ -132,7 +125,7 @@ function renderWeekView(){
 }
 
 function renderMonthView(){
-  // grid 7x5 com dias
+  
   const grid = document.createElement('div');
   grid.style.display='grid';
   grid.style.gridTemplateColumns='repeat(7,1fr)';
@@ -143,10 +136,10 @@ function renderMonthView(){
   const month = currentDate.getMonth();
   const first = new Date(year, month, 1);
   const last = new Date(year, month+1, 0);
-  const startDay = first.getDay() === 0 ? 6 : first.getDay()-1; // shift segunda=0
+  const startDay = first.getDay() === 0 ? 6 : first.getDay()-1; 
   const total = last.getDate();
 
-  // preencher 42 células
+ 
   for(let i=0;i<42;i++){
     const cell = document.createElement('div');
     cell.style.minHeight='60px';
@@ -161,7 +154,7 @@ function renderMonthView(){
       title.style.marginBottom='6px';
       cell.appendChild(title);
 
-      // eventos do dia
+      
       const dstr = new Date(year, month, dayNum).toISOString().slice(0,10);
       const evs = loadEvents().filter(e => e.date === dstr);
       evs.slice(0,3).forEach(e=>{
@@ -182,7 +175,7 @@ function renderMonthView(){
   agendaContent.appendChild(grid);
 }
 
-// navegação e handlers
+
 btnToday.addEventListener('click', ()=>{
   currentDate = new Date();
   renderAgenda();
@@ -205,15 +198,15 @@ btnNext.addEventListener('click', ()=>{
 viewBtns.forEach(b=>{
   b.addEventListener('click', (ev)=>{
     viewBtns.forEach(x=>x.classList.remove('active'));
-    b.classList.add('active'); // só altera classe; visual não muda muito
+    b.classList.add('active'); 
     viewMode = b.dataset.view;
     renderAgenda();
   });
 });
 
-// Modal controle
+
 btnNew.addEventListener('click', ()=> {
-  // pré-preenche com data atual
+ 
   const dt = new Date(currentDate);
   const dateInput = eventForm.querySelector('[name="date"]');
   dateInput.value = dt.toISOString().slice(0,10);
@@ -232,7 +225,6 @@ modal.addEventListener('click', (e)=>{
   }
 });
 
-// salvar evento
 eventForm.addEventListener('submit', (e)=>{
   e.preventDefault();
   const form = new FormData(eventForm);
@@ -253,5 +245,8 @@ eventForm.addEventListener('submit', (e)=>{
 });
 
 
-// inicializa
 renderAgenda();
+
+window.addEventListener('load', () => {
+  renderAgenda();
+})
