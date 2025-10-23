@@ -2,7 +2,7 @@
   "name": "site-rokuzen",
   "version": "1.0.0",
   "description": "Esse repositório tem como objetivo desenvolver um site de agendamentos online de massagens\r para a ROKUZEN.",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
