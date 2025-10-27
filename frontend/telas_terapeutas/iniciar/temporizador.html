@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rokuzen</title>
-    <link rel="stylesheet" href="/assets/css/temporizador.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rokuzen</title>
+  <link rel="stylesheet" href="/frontend/assets/css/temporizador.css">
 
 </head>
+
 <body>
 
   <header class="topbar">
     <div class="brand">
-        <img src="/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
+      <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
     </div>
 
-    <header class="topbar">
-      <div class="brand">
-          <img src="/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
+    <nav class="menu">
+      <a class="menu-item" href="/frontend/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a>
+      <a class="menu-item active" href="/frontend/telas/salas/salas.html">Salas</a>
+      <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
+      <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Minha escala</a>
+      <div class="avatar" title="Perfil">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+        </svg>
       </div>
-  
-      <nav class="menu">
-          <a class="menu-item" href="/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a>
-          <a class="menu-item active" href="/telas/escolha_a_unidade/escolha_sua_unidade.html">Salas</a>
-          <a class="menu-item" href="#">Relatórios</a>
-          <a class="menu-item" href="/telas/escala/escala.html">Minha escala</a>
-          <div class="avatar" title="Perfil">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
-                  <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
-                  <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
-              </svg>
-          </div>
-      </nav>
+    </nav>
   </header>
 
-    <main>
-        <div class="content">
+  <main>
+    <div class="content">
       <div id="timer">00:00</div>
       <div class="button-container">
         <button id="startBtn">Iniciar</button>
@@ -43,11 +40,11 @@
       </div>
     </div>
     <div id="notification" class="hidden"></div>
-    </main>
+  </main>
 
 
-    <script>
-        let startTime;
+  <script>
+    let startTime;
     let timerInterval;
 
     const timerDisplay = document.getElementById('timer');
@@ -85,19 +82,20 @@
         window.location.href = "atendimento_encerrado.html";
       }, 5000);
     });
-    </script>
+  </script>
 
-      <!--Vlibras-->
-      <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-          <div class="vw-plugin-top-wrapper"></div>
-        </div>
-      </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
+  <!--Vlibras-->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 
 </body>
+
 </html>
