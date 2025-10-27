@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rokuzen - Agenda</title>
-  <link rel="stylesheet" href="/assets/css/escala.css">
+  <link rel="stylesheet" href="/frontend/assets/css/escala.css">
 </head>
+
 <body>
   <!-- Navbar -->
   <header class="navbar">
     <div class="logo">
-      <img src="/images/logo+ava/logo_png.png" alt="Logo Roku Zen">
+      <img src="/frontend/images/logo+ava/logo_png.png" alt="Logo Roku Zen">
     </div>
     <nav>
       <ul>
-        <li><a href="/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a></li>
-        <li><a href="/telas/agendamento/agendamento.html">Agendamento</a></li>
-        <li><a href="/telas/salas/salas.html">Salas</a></li>
+        <li><a href="/frontend/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a></li>
+        <li><a href="/frontend/telas/agendamento/agendamento.html">Agendamento</a></li>
+        <li><a href="/frontend/telas/salas/salas.html">Salas</a></li>
         <li><a href="/telas/escala/escala.html">Escala</a></li>
       </ul>
     </nav>
     <div class="profile">
-      <img src="/images/logo+ava/avatar_default.jpg" alt="Usuário">
+      <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Usuário">
     </div>
   </header>
 
@@ -37,47 +39,96 @@
     <section class="schedule">
       <table>
         <tbody>
-          <tr><td>01:00</td></tr>
-          <tr><td>02:00</td></tr>
-          <tr><td>03:00</td></tr>
-          <tr><td>04:00</td></tr>
-          <tr><td>05:00</td></tr>
-          <tr><td>06:00</td></tr>
-          <tr><td>07:00</td></tr>
-          <tr><td>08:00</td></tr>
-          <tr><td>09:00</td></tr>
-          <tr><td>10:00</td></tr>
-          <tr><td>11:00</td></tr>
-          <tr><td>12:00</td></tr>
-          <tr><td>13:00</td></tr>
-          <tr><td>14:00</td></tr>
-          <tr><td>15:00</td></tr>
-          <tr><td>16:00</td></tr>
-          <tr><td>17:00</td></tr>
-          <tr><td>18:00</td></tr>
-          <tr><td>19:00</td></tr>
-          <tr><td>20:00</td></tr>
-          <tr><td>21:00</td></tr>
-          <tr><td>22:00</td></tr>
-          <tr><td>23:00</td></tr>
-          <tr><td>24:00</td></tr>
+          <tr>
+            <td>01:00</td>
+          </tr>
+          <tr>
+            <td>02:00</td>
+          </tr>
+          <tr>
+            <td>03:00</td>
+          </tr>
+          <tr>
+            <td>04:00</td>
+          </tr>
+          <tr>
+            <td>05:00</td>
+          </tr>
+          <tr>
+            <td>06:00</td>
+          </tr>
+          <tr>
+            <td>07:00</td>
+          </tr>
+          <tr>
+            <td>08:00</td>
+          </tr>
+          <tr>
+            <td>09:00</td>
+          </tr>
+          <tr>
+            <td>10:00</td>
+          </tr>
+          <tr>
+            <td>11:00</td>
+          </tr>
+          <tr>
+            <td>12:00</td>
+          </tr>
+          <tr>
+            <td>13:00</td>
+          </tr>
+          <tr>
+            <td>14:00</td>
+          </tr>
+          <tr>
+            <td>15:00</td>
+          </tr>
+          <tr>
+            <td>16:00</td>
+          </tr>
+          <tr>
+            <td>17:00</td>
+          </tr>
+          <tr>
+            <td>18:00</td>
+          </tr>
+          <tr>
+            <td>19:00</td>
+          </tr>
+          <tr>
+            <td>20:00</td>
+          </tr>
+          <tr>
+            <td>21:00</td>
+          </tr>
+          <tr>
+            <td>22:00</td>
+          </tr>
+          <tr>
+            <td>23:00</td>
+          </tr>
+          <tr>
+            <td>24:00</td>
+          </tr>
         </tbody>
       </table>
     </section>
   </main>
 
-    <!--Vlibras-->
-    <div vw class="enabled">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-      </div>
+  <!--Vlibras-->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 
   <script src="/assets/js/escala.js"></script>
 </body>
+
 </html>
