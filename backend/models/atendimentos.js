@@ -20,13 +20,13 @@ const Atendimentos = {
     },
 
     //Update
-    updateAtendimento: (inicio_atendimento, fim_atendimento, pagamento, id_servico, id_cliente, id_colaborador, id_sala, id_unidade, callback) => {
-        db.query("UPDATE atendimentos SET inicio_atendimento=?, fim_atendimento=?, pagamento=?, id_servico=?, id_cliente=?, id_colaborador=?, id_sala=?, id_unidade=? WHERE id_atendimento=?;", [inicio_atendimento, fim_atendimento, pagamento, id_servico, id_cliente, id_colaborador, id_sala, id_unidade], callback)
+    updateAtendimento: (inicio_atendimento, fim_atendimento, pagamento, id_servico, id_cliente, id_colaborador, id_sala, id_unidade, id_atendimento, callback) => {
+        db.query("UPDATE atendimentos SET inicio_atendimento=?, fim_atendimento=?, pagamento=?, id_servico=?, id_cliente=?, id_colaborador=?, id_sala=?, id_unidade=? WHERE id_atendimento=?;", [inicio_atendimento, fim_atendimento, pagamento, id_servico, id_cliente, id_colaborador, id_sala, id_unidade, id_atendimento], callback)
     },
 
     //Delete
     deleteAtendimento: (id_atendimento, callback) => {
-        db.query("DELETE FROM ATENDIMENTO WHERE id_atendimento = ?", [id_atendimento], callback)
+        db.query("DELETE FROM atendimentos WHERE id_atendimento = ?", [id_atendimento], callback)
     },
 
 };
