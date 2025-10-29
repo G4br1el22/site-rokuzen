@@ -21,7 +21,7 @@ body {
     min-height: 100vh;
     padding: 20px 40px;
     border-radius: 50px;
-    display: inline-block;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
@@ -76,12 +76,6 @@ header {
     height: 45px;
 }
 
-.perfil {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -90,69 +84,85 @@ main {
     gap: 20px;
 }
 
-.texto {
-    padding: 0;
-}
-
 .texto h1 {
     font-family: 'Bayon', sans-serif;
     font-size: clamp(40px, 8vw, 50px);
     line-height: 0.9;
     color: #48652b;
     text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
-    margin: 0;
-    padding-left: 0;
-    text-align: left;
     margin-bottom: 40px;
 }
 
-/* Cards lado a lado - usando flex com largura proporcional */
+/* Cards */
 .cards {
-    display: inline-block;
-    flex-direction: row;
-    justify-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--card-gap);
     width: 100%;
 }
 
 .card {
-    flex: 1 1 calc((100% - 3 * var(--card-gap)) / 4); /* 4 cards lado a lado */
+    position: relative;
+    flex: 1 1 calc((100% - 3 * var(--card-gap)) / 4);
     max-width: calc((100% - 3 * var(--card-gap)) / 4);
     height: var(--card-height);
-    border-radius: 20px;
+    /* 1. REMOVIDO: border-radius: 20px; */
     overflow: hidden;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    /* 2. REMOVIDO: background-color: #fff; */
+    /* 3. REMOVIDO: box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); */
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* 4. ADICIONADO: Gradiente de Escurecimento (Overlay) */
+    /* Cria um overlay escuro na parte inferior para o texto se destacar */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    /* 5. REMOVIDO: box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
 }
 
 .card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute; /* Permite que o gradiente fique por cima */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Coloca a imagem sob o gradiente e o texto */
+    
+    /* 6. ADICIONADO: Filtro para Escurecer e Desfocar */
+    filter: brightness(0.8) blur(1.5px); /* Ajuste os valores conforme o desejado */
+    transition: filter 0.3s ease; /* Transição para o efeito de hover */
 }
 
-.card:hover {
-    transform: translateY(-4px);
+/* Efeito de hover na imagem */
+.card:hover img {
+    filter: brightness(0.9) blur(0px); /* Tira um pouco do blur e clareia no hover */
 }
 
+
+/* Texto fixo sobre a imagem */
 .info {
     position: absolute;
     bottom: 18px;
     left: 14px;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    color: #fff;
+    /* Text-shadow para melhorar legibilidade em cima de imagens */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
+    z-index: 2; /* Garante que o texto fique acima da imagem e do gradiente */
 }
 
 .sub {
     font-family: 'Albert Sans', sans-serif;
     font-size: 13px;
     font-weight: 400;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .info h2 {
-    font-family: 'Bayon', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 26px;
     line-height: 1.1;
     margin-top: 3px;
@@ -173,31 +183,6 @@ footer {
     flex: 1;
 }
 
-.botoes {
-    display: flex;
-    gap: 12px;
-}
-
-.btn {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    border: 2px solid #4c5f32;
-    background: none;
-    color: #4c5f32;
-    font-size: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.btn:hover {
-    background-color: #4c5f32;
-    color: #fff;
-}
-
 .linha {
     flex: 1;
     height: 2px;
@@ -208,14 +193,14 @@ footer {
 /* Responsividade */
 @media (max-width: 1200px) {
     .card {
-        flex: 1 1 calc((100% - var(--card-gap)) / 2); /* 2 cards por linha */
+        flex: 1 1 calc((100% - var(--card-gap)) / 2);
         max-width: calc((100% - var(--card-gap)) / 2);
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        flex: 1 1 100%; /* 1 card por linha */
+        flex: 1 1 100%;
         max-width: 100%;
     }
 }
