@@ -97,7 +97,7 @@
             <option value="pacote-2">Maca + Reflexologia</option>
           </select>
         </label>
-        
+
         <label>
           Duração (minutos)
           <input type="number" name="duration" min="0.25" step="0.25" value="1" required>
@@ -116,6 +116,7 @@
       <h3>Editar Agendamento</h3>
       <form id="editForm">
         <input type="hidden" name="id">
+
         <label>
           Título
           <input type="text" name="title" required>
@@ -141,54 +142,23 @@
           <button type="button" id="btn-edit-cancel" class="pill">Cancelar</button>
           <button type="submit" class="pill primary">Salvar</button>
         </div>
+      </form>
+    </div>
+  </div>
 
-        <div id="editModal" class="modal hidden" aria-hidden="true">
-          <div class="modal-card">
-            <h3>Editar Agendamento</h3>
-            <form id="editForm">
-              <input type="hidden" name="id">
-              <label>
-                Título
-                <input type="text" name="title" required>
-              </label>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
 
-              <label>
-                Data
-                <input type="date" name="date" required>
-              </label>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 
-              <label>
-                Início
-                <input type="time" name="start" required>
-              </label>
-
-              <label>
-                Duração (horas)
-                <input type="number" name="duration" min="0.25" step="0.25" required>
-              </label>
-
-              <div class="modal-actions">
-                <button type="button" id="btn-delete" class="pill danger">Excluir</button>
-                <button type="button" id="btn-edit-cancel" class="pill">Cancelar</button>
-                <button type="submit" class="pill primary">Salvar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!--Vlibras-->
-        <div vw class="enabled">
-          <div vw-access-button class="active"></div>
-          <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-          </div>
-        </div>
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-          new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
-
-        <script src="/frontend/assets/js/agendamento.js"></script>
+  <script src="/frontend/assets/js/agendamento.js"></script>
 </body>
 
 </html>
