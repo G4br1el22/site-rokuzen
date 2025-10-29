@@ -2,25 +2,54 @@ const db = require("../config/connectionDatabase")
 
 const Clientes = {
     //Create
-    createCliente: (nome_cliente, email_cliente, telefone_cliente, data_nasc, callback) =>{
-        db.query("INSERT INTO clientes (nome_cliente, email_cliente, telefone_cliente, data_nasc) VALUES (?, ?, ?, ?);", [nome_cliente, email_cliente, telefone_cliente, data_nasc], callback)
+    createCliente: async(nome_cliente, email_cliente, telefone_cliente, data_nasc) =>{
+        try{
+            const [resposta] = await db.execute("INSERT INTO clientes (nome_cliente, email_cliente, telefone_cliente, data_nasc) VALUES (?, ?, ?, ?);", [nome_cliente, email_cliente, telefone_cliente, data_nasc])
+            return resposta
+        }catch(e){
+            throw new Error(`Erro ao criar clientes: ${e.message}`);
+        }
     },
 
     //Read
-    getLoginCliente: (email_cliente, telefone_cliente, callback)=>{
-        db.query("SELECT c.email_cliente, c.telefone_cliente FROM clientes c WHERE c.email_cliente = ? AND c.telefone_cliente = ?;", [email_cliente, telefone_cliente], callback)
+    getLoginCliente: async(email_cliente, telefone_cliente)=>{
+        try{
+            const [linha] = await db.execute("SELECT c.email_cliente, c.telefone_cliente FROM clientes c WHERE c.email_cliente = ? AND c.telefone_cliente = ?;", [email_cliente, telefone_cliente])
+            return linha[0] || null
+        }
+        catch(e){
+            throw new Error(`Erro ao acessar clientes: ${e.message}`);
+        }
     },
 
-    getAniversario: (email_cliente, callback)=>{
-        db.query("SELECT data_nasc FROM clientes WHERE email_cliente = ?;", [email_cliente], callback)
+    getAniversario: async(email_cliente)=>{
+        try{
+            const [linha] = await db.execute("SELECT data_nasc FROM clientes WHERE email_cliente = ?;", [email_cliente])
+            return linha[0] || null
+        }
+        catch(e){
+            throw new Error(`Erro ao acessar aniversário dos clientes: ${e.message}`);
+        }
     },
     //Update
-    updateCliente: (nome_cliente, email_cliente, telefone_cliente, data_nasc, id_cliente, callback)=>{
-        db.query("UPDATE clientes SET nome_cliente = ?, email_cliente = ?, telefone_cliente = ?, data_nasc = ? WHERE id_cliente = ?;", [nome_cliente, email_cliente, telefone_cliente, data_nasc, id_cliente], callback)
+    updateCliente: async(nome_cliente, email_cliente, telefone_cliente, data_nasc, id_cliente)=>{
+        try{
+            const [resposta] = await db.execute("UPDATE clientes SET nome_cliente = ?, email_cliente = ?, telefone_cliente = ?, data_nasc = ? WHERE id_cliente = ?;", [nome_cliente, email_cliente, telefone_cliente, data_nasc, id_cliente])
+            return resposta
+        }
+        catch(e){
+            throw new Error(`Erro ao atualizar clientes: ${e.message}`);
+        }
     },
     //Delete
-    deleteCliente: (id_cliente, callback)=>{
-        db.query("DELETE FROM clientes WHERE id_cliente = ?", [id_cliente], callback)
+    deleteCliente: async(id_cliente)=>{
+        try{
+            const [resposta] = await db.execute("DELETE FROM clientes WHERE id_cliente = ?", [id_cliente])
+            return resposta
+        }
+        catch(e){
+            throw new Error(`Erro ao deletar clientes: ${e.message}`);
+        }
     },
 };
 
