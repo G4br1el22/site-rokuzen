@@ -114,3 +114,55 @@ select {
   margin: 4px;
   font-size: 14px;
 }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand .logo {
+  height: 54px;
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu .menu-item {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.menu .menu-item.active {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+.logo {
+  height: 45px;
+}
+
+.perfil {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
