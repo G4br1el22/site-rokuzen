@@ -95,7 +95,7 @@ main {
 }
 
 .texto h1 {
-    font-family: 'Bayon', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(40px, 8vw, 50px);
     line-height: 0.9;
     color: #48652b;
@@ -108,7 +108,7 @@ main {
 
 /* Cards lado a lado - usando flex com largura proporcional */
 .cards {
-    display: inline-block;
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     gap: var(--card-gap);
@@ -136,12 +136,24 @@ main {
     transform: translateY(-4px);
 }
 
+/* Garante que o texto está sempre visível */
 .info {
     position: absolute;
     bottom: 18px;
     left: 14px;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    /* Adiciona opacidade total, caso houvesse uma regra padrão em 0 */
+    opacity: 1; 
+    /* Garante que ele fique por cima da imagem, se a imagem for o background */
+    z-index: 10; 
+    /* Remove qualquer transição que possa afetar a visibilidade */
+    transition: none; 
+}
+
+/* Remove qualquer regra de hover que oculte ou mostre o texto */
+.card:hover .info {
+    opacity: 1; /* Garante que o hover não mude a opacidade */
 }
 
 .sub {
@@ -152,7 +164,7 @@ main {
 }
 
 .info h2 {
-    font-family: 'Bayon', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 26px;
     line-height: 1.1;
     margin-top: 3px;
