@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cliente</title>
+    <link rel="stylesheet" href="/frontend/assets/css/cadastro_cliente.css">
+</head>
+
+<body>
+    <header>
+        <h1>CADASTRO DE CLIENTE</h1>
+        <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Avatar Gerente" class="avatar-gerente">
+    </header>
+
+    <main>
+        <section class="foto-perfil">
+            <h2>Foto de Perfil</h2>
+            <div class="avatar-container">
+                <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Foto de Perfil" class="avatar">
+            </div>
+            <div class="foto-acoes">
+                <label class="carregar" for="upload">Carregar nova foto</label>
+                <input type="file" id="upload" hidden>
+                <button class="remover">Remover foto</button>
+            </div>
+        </section>
+
+        <form>
+            <label>Nome</label>
+            <input type="text" placeholder="Value">
+
+            <label>Data de Nascimento</label>
+            <input type="date">
+
+            <label>E-mail</label>
+            <input type="email" placeholder="Value">
+
+            <label>
+                Gênero
+                <select id="genero">
+                    <option>Selecione...</option>
+                    <option>Feminino</option>
+                    <option>Masculino</option>
+                    <option>Não-binário</option>
+                    <option>Prefiro não informar</option>
+                    <option>Outro</option>
+                </select>
+            </label>
+
+            <button type="submit" class="salvar">Salvar</button>
+        </form>
+    </main>
+</body>
+
+</html>

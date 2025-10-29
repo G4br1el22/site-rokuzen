@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9e8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #f9f9e8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #2d5000;
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+    font-family: 'Bayon' sans-serif;
+}
+
+.avatar-gerente {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.foto-perfil {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.foto-perfil h2 {
+    color: #444;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.foto-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.carregar,
+.remover {
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.carregar {
+    color: #444;
+    cursor: pointer;
+}
+
+.carregar:hover {
+    background-color: rgba(100, 140, 50, 0.1);
+    box-shadow: 0 0 5px rgba(100, 140, 50, 0.3);
+}
+
+.remover {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+.remover:hover {
+    background-color: rgba(255, 0, 0, 0.08);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+form {
+    width: 70%;
+    max-width: 600px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+form label {
+    font-size: 12px;
+    color: #444;
+}
+
+form input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: box-shadow 0.2s;
+}
+
+form input:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(50, 100, 50, 0.4);
+}
+
+.salvar {
+    margin-top: 20px;
+    background-color: #4b6b2b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.salvar:hover {
+    background-color: #5e8537;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
