@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pontos</title>
+  <link rel="stylesheet" href="/site-rokuzen/frontend/assets/css/pontos.css" />
+</head>
+<body>
+  <header>
+   <img src="/site-rokuzen/frontend/images/logo+ava/logo_png.png" alt="Logo Rokuzen" class="logo" />
+    <nav>
+      <button class="nav-btn active">Pontos</button>
+      <button class="nav-btn" onclick="window.location.href='perfis.html'">Perfil dos usuários</button>
+      <button class="nav-btn">Alterar agendamento</button>
+      
+    </nav>
+  </header>
+
+  <main>
+    <input type="text" placeholder="Pesquisar Funcionários... " class="search" />
+
+    <section class="table-section">
+      <div class="table-wrapper">
+        <table>
+          <tbody>
+            <tr>
+              <td class="name selected">Isabu</td>
+              <td class="points"></td>
+            </tr>
+            <tr>
+              <td class="name">Recebba</td>
+              <td class="points"></td>
+            </tr>
+            <tr>
+              <td class="name">Larringe</td>
+              <td class="points"></td>
+            </tr>
+            <tr>
+              <td class="name">Gabibiel</td>
+              <td class="points"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="add-section">
+        <p>Selecione o trabalhador</p>
+        <button id="addBtn">Adicionar</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="modal">
+    <div class="modal-content">
+      <h3>Adicionar pontos</h3>
+      <input type="number" id="pointsInput" placeholder="Digite o total de pontos" />
+      <div class="modal-actions">
+        <button id="cancelBtn">Cancelar</button>
+        <button id="confirmBtn">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/site-rokuzen/frontend/assets/js/pontos.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" href="/site-rokuzen/frontend/assets/css/perfilterapeutas.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h1>AJUSTE</h1>
+      <button id="editBtn">Editar Perfil</button>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <section class="main">
+      <header>
+        <h2>EDITAR PERFIL</h2>
+        <img src="/site-rokuzen/frontend/images/logo+ava/avatar_default.jpg" alt="perfil" class="profile-icon" />
+      </header>
+
+      <div class="profile-section">
+        <h3>Foto de Perfil</h3>
+        <label for="photoUpload" class="profile-photo">
+          <img src="/site-rokuzen/frontend/images/logo+ava/avatar_default.jpg" alt="Foto de perfil" id="profilePic" />
+          <input type="file" id="photoUpload" accept="image/*" disabled />
+        </label>
+
+        <div class="input-group">
+          <label for="nameInput">Alterar nome</label>
+          <input type="text" id="nameInput" value="funcionaria" disabled />
+        </div>
+
+        <div class="input-group">
+          <label for="roleInput">Alterar cargo</label>
+          <input type="text" id="roleInput" value="Massoterapeuta" disabled />
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/site-rokuzen/frontend/assets/js/perfilterapeutas.js"></script>
+</body>
+</html>

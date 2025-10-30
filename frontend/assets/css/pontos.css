@@ -1,0 +1,195 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap');
+
+body {
+  background-color: #f6f6ea;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.logo {
+  height: 60px;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+
+.nav-btn.active {
+  background-color: #666;
+  color: white;
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+
+.search {
+  width: 52%;
+  margin: 20px auto;
+  display: block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: #d9d9d9;
+  font-size: 16px;
+}
+
+.table-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* --- CORREÇÃO DA TABELA (Início) --- */
+
+/* MUDANÇA: Este é o novo container que adicionamos no HTML */
+.table-wrapper {
+  border: 1px solid #ccc; /* Borda sutil como no código anterior */
+  border-radius: 15px;  /* Arredondamento suave, como no código anterior */
+  overflow: hidden;     /* Essencial para o border-radius funcionar na tabela */
+  width: 50%;           /* Você pode ajustar isso, mas impede a tabela de ser "pequena" */
+  min-width: 400px;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 16px;
+  width: 100%; /* MUDANÇA: Faz a tabela preencher o wrapper */
+}
+
+td {
+  border-bottom: 1px solid #555;
+  padding: 15px 40px;
+}
+
+/* MUDANÇA: Remove a borda da última linha, como no código anterior */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.name {
+  background-color: #7b9364;
+  color: white;
+  /* MUDANÇA: Removido 'width' para a coluna se ajustar */
+  /* MUDANÇA: Removido 'border-top-left-radius' */
+  /* MUDANÇA: Removido 'border-bottom-left-radius' */
+}
+
+.points {
+  background-color: #d9d9d9;
+  width: 100px;
+  text-align: center;
+  /* MUDANÇA: Removido 'border-top-right-radius' */
+  /* MUDANÇA: Removido 'border-bottom-right-radius' */
+}
+
+/* --- CORREÇÃO DA TABELA (Fim) --- */
+
+.selected {
+  /* MUDANÇA: Mudei de 'font-weight' para 'outline' 
+     para ficar mais parecido com o código anterior 
+     e não fazer a tabela "pular" */
+  outline: 2px solid #3c4d22;
+  outline-offset: -2px;
+}
+
+.add-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.add-section p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#addBtn {
+  background-color: #4a602a;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#addBtn:hover {
+  background-color: #3c4d22;
+}
+
+/* --- CORREÇÃO DO MODAL (Início) --- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  
+  /* MUDANÇA: Adicionamos uma largura fixa e uma sombra
+     para o modal não ocupar a tela toda. */
+  width: 320px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+/* --- CORREÇÃO DO MODAL (Fim) --- */
+
+.modal-content input {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box; /* Adicionado para o padding não quebrar a largura */
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  background-color: #4a602a;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-actions button:hover {
+  background-color: #3c4d22;
+}
