@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Cliente</title>
+  <link rel="stylesheet" href="/frontend/assets/css/cadastro.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="topbar">
+      <div class="brand">
+        <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
+      </div>
+
+      <nav class="menu">
+        <a class="menu-item" href="/frontend/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a>
+        <a class="menu-item" href="/frontend/telas/agendamento/agendamento.html">Agendamento</a>
+        <a class="menu-item" href="#">Salas</a>
+        <a class="menu-item" href="/frontend/telas/escala/escala.html">Escala</a>
+        <a class="menu-item active" href="/frontend/telas/cadastro_cliente/cadastro.html">Cadastro do Cliente</a>
+        <div class="avatar" title="Perfil">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#EAF0E1"/>
+          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2"/>
+          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2"/>
+        </svg>
+      </div>
+      </nav>
+    </header>
+
+    <main class="cadastro-container">
+      <h1 class="titulo">CADASTRO DE CLIENTE</h1>
+
+      <section class="perfil-section">
+        <div class="foto-preview">
+          <img id="foto-preview" src="/frontend/images/avatar_padrao.png" alt="Foto de perfil" class="foto-perfil" />
+        </div>
+        <div class="foto-botoes">
+          <label for="foto-upload" class="upload-btn">Selecionar foto</label>
+          <input type="file" id="foto-upload" accept="image/png, image/jpeg" hidden />
+          <button type="button" class="remove-btn" id="remove-foto">Remover foto</button>
+        </div>
+      </section>
+
+      <form class="form">
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
+        </div>
+
+        <div class="campo">
+          <label for="data">Data de nascimento</label>
+          <input type="date" id="data" name="data" required />
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required />
+        </div>
+
+        <div class="campo">
+          <label for="gender">Gênero</label>
+          <select id="gender" name="gender" required>
+            <option value="">Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <button type="submit" class="button">Salvar</button>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    const fotoInput = document.getElementById('foto-upload');
+    const fotoPreview = document.getElementById('foto-preview');
+    const avatarPreview = document.getElementById('avatar-preview');
+    const removeBtn = document.getElementById('remove-foto');
+    const defaultImg = '/frontend/images/avatar_padrao.png';
+
+    fotoInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          fotoPreview.src = event.target.result;
+          avatarPreview.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    removeBtn.addEventListener('click', () => {
+      fotoPreview.src = defaultImg;
+      avatarPreview.src = defaultImg;
+      fotoInput.value = '';
+    });
+  </script>
+</body>
+</html>

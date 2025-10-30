@@ -88,7 +88,7 @@ main {
 
 .texto h1 {
   font-family: 'Bayon', sans-serif;
-  font-size: clamp(40px, 8vw, 65px);
+  font-size: clamp(40px, 8vw, 50px);
   justify-content: space-evenly;
   line-height: 0.9;
   color: #48652b;
