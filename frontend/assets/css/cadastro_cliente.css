@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9e8;
@@ -8,13 +14,57 @@ body {
     padding: 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #f9f9e8;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 2px solid #d8e0c6;
+}
+
+.brand .logo {
+  height: 54px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.menu .menu-item {
+  text-decoration: none;
+  color: #4c5f32;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.menu .menu-item:hover {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.menu .menu-item.active {
+  background: rgba(84, 102, 54, 0.1);
+}
+
+.avatar img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #c6d9a2;
+  object-fit: cover;
 }
 
 h1 {
@@ -27,12 +77,6 @@ h1 {
     align-items: flex-start;
 }
 
-.avatar-gerente {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
 
 .foto-perfil {
     text-align: center;
