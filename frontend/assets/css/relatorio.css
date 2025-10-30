@@ -8,22 +8,8 @@ body {
   color: #2e2e2e;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 40px;
-}
-
 header img {
   height: 45px;
-}
-
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #2e2e2e;
-  font-size: 14px;
 }
 
 h1 {
@@ -33,7 +19,56 @@ h1 {
 }
 
 .container {
+  width: 100%;
+  min-height: 100vh;
   padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 2px solid #d8e0c6;
+}
+
+.brand .logo {
+  height: 54px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.menu .menu-item {
+  text-decoration: none;
+  color: #4c5f32;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.menu .menu-item:hover {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.menu .menu-item.active {
+  background: rgba(84, 102, 54, 0.1);
+}
+
+.avatar img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #c6d9a2;
+  object-fit: cover;
 }
 
 .card {

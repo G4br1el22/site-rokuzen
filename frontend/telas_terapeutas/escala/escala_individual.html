@@ -1,134 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rokuzen - Agenda</title>
+  <title>Roku Zen - Agenda</title>
   <link rel="stylesheet" href="/frontend/assets/css/escala.css">
 </head>
-
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="/frontend/images/logo+ava/logo_png.png" alt="Logo Roku Zen">
-    </div>
-    <nav>
-      <ul>
-        <li><a class="menu-item" href="/frontend/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a></li>
-        <li><a class="menu-item" href="/frontend/telas/agendamento/agendamento.html">Agendamento</a></li>
-        <li><a class="menu-item" href="/frontend/telas/salas/salas.html">Salas</a></li>
-        <li><a class="menu-item active" href="/telas/escala/escala.html">Escala</a></li>
-      </ul>
-    </nav>
-    <div class="profile">
-      <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Usuário">
-    </div>
-  </header>
+  <header class="topbar">
+      <div class="brand">
+        <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
+      </div>
 
-  <!-- Container principal -->
+      <nav class="menu">
+        <a class="menu-item" href="/frontend/telas/escolha_a_unidade/escolha_sua_unidade.html">Unidade</a>
+        <a class="menu-item" href="/frontend/telas/agendamento/agendamento.html">Agendamento</a>
+        <a class="menu-item" href="#">Salas</a>
+        <a class="menu-item active" href="/frontend/telas/escala/escala.html">Escala</a>
+        <div class="avatar" title="Perfil">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#EAF0E1"/>
+          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2"/>
+          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2"/>
+        </svg>
+      </div>
+      </nav>
+    </header>
+
   <main class="container">
-    <!-- Sidebar -->
+
     <aside class="sidebar">
-      <h2>MINHA AGENDA</h2>
+      <h2>TERAPEUTAS</h2>
       <button class="therapist">Cláudio Júnior</button>
+      <button class="therapist">Amélia Vanessa</button>
+      <button class="therapist">Vitória Garcia</button>
+      <button class="therapist">Gustavo Amaral Lima</button>
     </aside>
 
-    <!-- Agenda -->
     <section class="schedule">
       <table>
         <tbody>
-          <tr>
-            <td>01:00</td>
-          </tr>
-          <tr>
-            <td>02:00</td>
-          </tr>
-          <tr>
-            <td>03:00</td>
-          </tr>
-          <tr>
-            <td>04:00</td>
-          </tr>
-          <tr>
-            <td>05:00</td>
-          </tr>
-          <tr>
-            <td>06:00</td>
-          </tr>
-          <tr>
-            <td>07:00</td>
-          </tr>
-          <tr>
-            <td>08:00</td>
-          </tr>
-          <tr>
-            <td>09:00</td>
-          </tr>
-          <tr>
-            <td>10:00</td>
-          </tr>
-          <tr>
-            <td>11:00</td>
-          </tr>
-          <tr>
-            <td>12:00</td>
-          </tr>
-          <tr>
-            <td>13:00</td>
-          </tr>
-          <tr>
-            <td>14:00</td>
-          </tr>
-          <tr>
-            <td>15:00</td>
-          </tr>
-          <tr>
-            <td>16:00</td>
-          </tr>
-          <tr>
-            <td>17:00</td>
-          </tr>
-          <tr>
-            <td>18:00</td>
-          </tr>
-          <tr>
-            <td>19:00</td>
-          </tr>
-          <tr>
-            <td>20:00</td>
-          </tr>
-          <tr>
-            <td>21:00</td>
-          </tr>
-          <tr>
-            <td>22:00</td>
-          </tr>
-          <tr>
-            <td>23:00</td>
-          </tr>
-          <tr>
-            <td>24:00</td>
-          </tr>
+          <tr><td>01:00</td></tr>
+          <tr><td>02:00</td></tr>
+          <tr><td>03:00</td></tr>
+          <tr><td>04:00</td></tr>
+          <tr><td>05:00</td></tr>
+          <tr><td>06:00</td></tr>
+          <tr><td>07:00</td></tr>
+          <tr><td>08:00</td></tr>
+          <tr><td>09:00</td></tr>
+          <tr><td>10:00</td></tr>
+          <tr><td>11:00</td></tr>
+          <tr><td>12:00</td></tr>
+          <tr><td>13:00</td></tr>
+          <tr><td>14:00</td></tr>
+          <tr><td>15:00</td></tr>
+          <tr><td>16:00</td></tr>
+          <tr><td>17:00</td></tr>
+          <tr><td>18:00</td></tr>
+          <tr><td>19:00</td></tr>
+          <tr><td>20:00</td></tr>
+          <tr><td>21:00</td></tr>
+          <tr><td>22:00</td></tr>
+          <tr><td>23:00</td></tr>
+          <tr><td>24:00</td></tr>
         </tbody>
       </table>
     </section>
   </main>
 
-  <!--Vlibras-->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+    <!--Vlibras-->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
     </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
   <script src="/frontend/assets/js/escala.js"></script>
 </body>
-
 </html>

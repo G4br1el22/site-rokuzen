@@ -4,122 +4,130 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   background-color: #f8f9ef;
   font-family: 'Albert Sans', sans-serif;
   color: #4c5f32;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
+  flex: 1;
   width: 100%;
-  min-height: 100vh;
-  padding: 20px;
-  border-radius: 50px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 8px;
   flex-wrap: wrap;
-  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 2px solid #d8e0c6;
 }
 
 .brand .logo {
   height: 54px;
-  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
 }
 
 .menu {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .menu .menu-item {
   text-decoration: none;
-  color: var(--text);
+  color: #4c5f32;
   font-weight: 600;
-  padding: 6px 8px;
+  padding: 6px 10px;
   border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.menu .menu-item:hover {
+  background: rgba(84, 102, 54, 0.08);
 }
 
 .menu .menu-item.active {
   background: rgba(84, 102, 54, 0.08);
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-
-.logo {
-  height: 45px;
-}
-
-.perfil {
+.avatar img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  border: 2px solid #c6d9a2;
+  object-fit: cover;
 }
 
-
 main {
+  flex: 1;
   display: flex;
+  flex-direction: row; 
   align-items: flex-start;
   justify-content: space-between;
   margin-top: 40px;
-  gap: 60px;
+  gap: 40px;  
 }
 
 .texto {
   flex: 1;
-  padding: 20px;
+  padding: 40px;
+  margin-right: 20px; 
 }
 
 .texto h1 {
   font-family: 'Bayon', sans-serif;
-  font-size: clamp(40px, 8vw, 50px);
-  justify-content: space-evenly;
+  font-size: clamp(36px, 7.5vw, 80px);
   line-height: 0.9;
   color: #48652b;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
 .texto p {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: 18px;
   margin-top: 25px;
   line-height: 1.4;
   color: #526d36;
   font-weight: 500;
 }
 
-
 .cards {
   display: flex;
-  gap: 25px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 25px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+:root {
+  --card-width: 300px; 
+  --card-height: 450px; 
 }
 
 .card {
   position: relative;
-  width: 230px;
-  height: 360px;
+  width: var(--card-width);
+  height: var(--card-height);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
   cursor: pointer;
+  display: flex;
+  align-items: stretch;
 }
 
 .card:hover {
@@ -155,16 +163,18 @@ main {
   margin-top: 3px;
 }
 
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 40px;
+}
+
 .controles {
   display: flex;
   align-items: center;
   gap: 20px;
   flex: 1;
-}
-
-.botoes {
-  display: flex;
-  gap: 12px;
 }
 
 .btn {
@@ -187,6 +197,22 @@ main {
   color: #fff;
 }
 
+.linha {
+  flex: 1;
+  height: 2px;
+  background-color: #4c5f32;
+  opacity: 0.3;
+}
+
+.linha-inferior {
+  height: 2px;
+  background-color: #4c5f32;
+  opacity: 0.3;
+  margin-top: 40px;
+  width: 100%;
+}
+
+
 @media (max-width: 1200px) {
   .container {
     padding: 20px 40px;
@@ -196,52 +222,65 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 20px;
   }
 
   .texto {
-    text-align: center;
-    margin-bottom: 30px;
+    padding: 20px;
+    margin-right: 0; 
   }
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-
   .topbar {
     flex-direction: column;
-    text-align: center;
+    gap: 8px;
+    align-items: center;
   }
 
   .menu {
     justify-content: center;
   }
 
+  .texto {
+    padding: 16px;
+  }
+
   .cards {
-    gap: 15px;
+    gap: 16px;
+  }
+
+  :root {
+    --card-height: 350px; 
+  }
+
+  .card {
+    flex: 0 1 48%;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
   .texto h1 {
-    font-size: 40px;
+    font-size: 36px;
   }
 
   .texto p {
-    font-size: 16px;
+    font-size: 15px;
   }
 
-  .menu {
-    gap: 10px;
+  :root {
+    --card-height: 300px; 
   }
 
-  .menu .menu-item {
-    padding: 4px 6px;
-    font-size: 14px;
+  .card {
+    flex: 0 1 100%;
   }
 
   .info h2 {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
