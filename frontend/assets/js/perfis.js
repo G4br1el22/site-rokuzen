@@ -18,7 +18,7 @@ users.forEach(user => {
 
     if (id) {
       
-      window.location.href = `perfilterapeutas.html?id=${id}`;
+      window.location.href = `janela_edicao.html?id=${id}`;
     }
   });
 });

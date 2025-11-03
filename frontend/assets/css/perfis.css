@@ -1,4 +1,3 @@
-/* style.css - cole todo esse conteúdo no arquivo style.css */
 :root{
   --bg: #f6f6ea;
   --green: #4a6623;
@@ -15,45 +14,67 @@ body{
   min-height:100vh;
 }
 
-/* NAVBAR */
-.navbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 30px;
-}
-.logo{
-  height: 60px;
-  object-fit:contain;
+.container {
+  flex: 1;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* nav links */
-.nav-links{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.nav-links a{
-  text-decoration:none;
-  color:#333;
-  padding:6px 10px;
-  border-radius:8px;
-  font-size:14px;
-  background:transparent;
-}
-.nav-links a.active{
-  background:#8b8b8b;
-  color:#fff;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 2px solid #d8e0c6;
 }
 
-/* main layout */
+.brand .logo {
+  height: 54px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.menu .menu-item {
+  text-decoration: none;
+  color: #4c5f32;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.menu .menu-item:hover {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.menu .menu-item.active {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.avatar img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #c6d9a2;
+  object-fit: cover;
+}
+
+
 main{
   max-width:1100px;
   margin: 18px auto;
   padding: 0 20px 60px;
 }
 
-/* search bar (visível) */
+
 .search-bar{
   width:80%;
   margin: 20px auto;
@@ -68,7 +89,7 @@ main{
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
 }
 
-/* user list */
+
 #user-list{
   background:#dcdcdc;
   border-radius:12px;
@@ -84,13 +105,13 @@ main{
 }
 .user:last-child{ border-bottom: none; }
 
-/* hover/selected visual feedback */
+
 .user:hover{
   background: rgba(0,0,0,0.03);
 }
 .user.hidden{ display:none !important; }
 
-/* responsividade */
+
 @media (max-width:600px){
   .navbar{ padding:12px; }
   .logo{ height:48px; }
