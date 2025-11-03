@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atendimento encerrado</title>
-  <link rel="stylesheet" href="/frontend/assets/css/atendimento_encerrado.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grand Plaza Shopping | Cadeiras Quick</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/frontend/assets/css/grandPlaza_quick.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-  <header class="topbar">
+  <div class="container">
+
+    <header class="topbar">
             <div class="brand">
                 <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
             </div>
@@ -19,7 +24,7 @@
                 <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
                 <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
                     individual</a>
-                <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
+                <a class="menu-item active" href="#">Salas</a>
                 <a class="menu-item" href="/frontend/telas_terapeutas/cadastroCliente/cadastro_do_cliente.html">Cadastro
                     Cliente</a>
                 <div class="avatar" title="Perfil">
@@ -31,28 +36,47 @@
                 </div>
             </nav>
         </header>
+    <main>
+      <section class="texto">
+        <h1>Cadeiras Quick - Grand Plaza Shopping</h1>
+      </section>
 
-  <main>
-    <div class="content">
-      <h2>Atendimento encerrado</h2>
-      <button class="option-btn">Agendamentos</button>
-      <button class="option-btn">Voltar para o início</button>
-    </div>
-  </main>
+      <section class="cards">
 
-  <!--Vlibras-->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
+        <div class="card">
+          <img src="/frontend/images/rooms/quick.png" alt="Grand Plaza Shopping" />
+          <div class="info">
+            <span class="sub">Grand Plaza Shopping</span>
+            <h2>SALA 1</h2>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/frontend/images/rooms/quick.png" alt="Golden Square Shopping" />
+          <div class="info">
+            <span class="sub">Golden Square Shopping</span>
+            <h2>SALA 2</h2>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/frontend/images/rooms/quick.png" alt="Mooca Plaza Shopping" />
+          <div class="info">
+            <span class="sub">Mooca Plaza Shopping</span>
+            <h2>SALA 3</h2>
+          </div>
+        </div>
+
   </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
 
+  </section>
+
+  </main>
   <footer>
+    <div class="controles">
+      <div class="linha"></div>
+    </div>
+
     <div class="footer-content">
       <div class="social-icons">
         <a href="https://www.facebook.com/rokuzen.massagem">
@@ -81,7 +105,22 @@
     <div class="footer-bottom">
       <p>© 2025 ROKUZEN • Designed by Press Customizr • Powered by WordPress</p>
     </div>
+
   </footer>
+  </div>
+
+  <!--Vlibras-->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
 </body>
 
 </html>

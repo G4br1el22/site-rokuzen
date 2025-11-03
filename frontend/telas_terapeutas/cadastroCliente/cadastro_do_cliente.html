@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atendimento encerrado</title>
-  <link rel="stylesheet" href="/frontend/assets/css/atendimento_encerrado.css">
+  <title>Cadastro de Cliente</title>
+  <link rel="stylesheet" href="/frontend/assets/css/cadastrar_cliente.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-  <header class="topbar">
+   <header class="topbar">
             <div class="brand">
                 <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
             </div>
@@ -19,8 +19,8 @@
                 <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
                 <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
                     individual</a>
-                <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
-                <a class="menu-item" href="/frontend/telas_terapeutas/cadastroCliente/cadastro_do_cliente.html">Cadastro
+                <a class="menu-item" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
+                <a class="menu-item active" href="/frontend/telas_terapeutas/cadastroCliente/cadastro_do_cliente.html">Cadastro
                     Cliente</a>
                 <div class="avatar" title="Perfil">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -33,24 +33,31 @@
         </header>
 
   <main>
-    <div class="content">
-      <h2>Atendimento encerrado</h2>
-      <button class="option-btn">Agendamentos</button>
-      <button class="option-btn">Voltar para o início</button>
-    </div>
-  </main>
+    <section class="foto-perfil">
+      <h2>Foto de Perfil</h2>
+      <div class="avatar-container">
+        <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Foto de Perfil" class="avatar">
+      </div>
+      <div class="foto-acoes">
+        <label class="carregar" for="upload">Carregar nova foto</label>
+        <input type="file" id="upload" hidden>
+        <button class="remover">Remover foto</button>
+      </div>
+    </section>
 
-  <!--Vlibras-->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+    <form>
+      <label>Alterar Nome</label>
+      <input type="text" placeholder="Nome">
+
+      <label>Alterar E-mail</label>
+      <input type="email" placeholder="email">
+
+      <label>Alterar Cargo</label>
+      <input type="text" placeholder="Cargo">
+
+      <button type="submit" class="salvar">Salvar</button>
+    </form>
+  </main>
 
   <footer>
     <div class="footer-content">
@@ -82,6 +89,7 @@
       <p>© 2025 ROKUZEN • Designed by Press Customizr • Powered by WordPress</p>
     </div>
   </footer>
+
 </body>
 
 </html>
