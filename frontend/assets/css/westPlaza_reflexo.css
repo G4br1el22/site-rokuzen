@@ -84,12 +84,12 @@ main {
 .texto {
   flex: 1;
   padding: 40px;
-  margin-right: 20px; 
+  margin-right: 5px; 
 }
 
 .texto h1 {
   font-family: 'Bayon', sans-serif;
-  font-size: clamp(36px, 5vw, 80px);
+  font-size: clamp(36px, 7.5vw, 70px);
   line-height: 0.9;
   color: #48652b;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
@@ -107,14 +107,14 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 25px;
+  gap: 10px;
   width: 100%;
-  padding: 0 20px;
+  padding: 0px;
 }
 
 :root {
-  --card-width: 300px; 
-  --card-height: 450px; 
+  --card-width: 250px; 
+  --card-height: 400px; 
 }
 
 .card {
