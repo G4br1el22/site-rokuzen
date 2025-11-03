@@ -8,8 +8,57 @@ body {
   color: #2e2e2e;
 }
 
-header img {
+.container {
+  flex: 1;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 2px solid #d8e0c6;
+}
+
+.brand .logo {
+  height: 54px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.menu .menu-item {
+  text-decoration: none;
+  color: #4c5f32;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.menu .menu-item:hover {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.menu .menu-item.active {
+  background: rgba(84, 102, 54, 0.08);
+}
+
+.avatar img {
+  width: 45px;
   height: 45px;
+  border-radius: 50%;
+  border: 2px solid #c6d9a2;
+  object-fit: cover;
 }
 
 h1 {
