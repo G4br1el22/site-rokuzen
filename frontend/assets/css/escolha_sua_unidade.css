@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -74,22 +75,22 @@ body {
 main {
   flex: 1;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   margin-top: 40px;
-  gap: 40px;  
+  gap: 40px;
 }
 
 .texto {
   flex: 1;
   padding: 40px;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 .texto h1 {
   font-family: 'Bayon', sans-serif;
-  font-size: clamp(20px, 18vw,70px);
+  font-size: clamp(20px, 18vw, 70px);
   white-space: nowrap;
   line-height: 0.9;
   color: #48652b;
@@ -114,8 +115,8 @@ main {
 }
 
 :root {
-  --card-width: 225px; 
-  --card-height: 375px; 
+  --card-width: 225px;
+  --card-height: 375px;
 }
 
 .card {
@@ -162,13 +163,6 @@ main {
   font-size: 26px;
   line-height: 1.1;
   margin-top: 3px;
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 40px;
 }
 
 .controles {
@@ -228,7 +222,7 @@ footer {
 
   .texto {
     padding: 20px;
-    margin-right: 0; 
+    margin-right: 0;
   }
 }
 
@@ -252,7 +246,7 @@ footer {
   }
 
   :root {
-    --card-height: 350px; 
+    --card-height: 350px;
   }
 
   .card {
@@ -274,7 +268,7 @@ footer {
   }
 
   :root {
-    --card-height: 300px; 
+    --card-height: 300px;
   }
 
   .card {
@@ -283,5 +277,69 @@ footer {
 
   .info h2 {
     font-size: 20px;
+  }
+}
+
+footer {
+  background-color: #4c5f32;
+  color: #fff;
+  padding: 40px 60px 20px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 26px;
+  margin-right: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #a5d6a7;
+}
+
+.footer-social a {
+  pointer-events: auto;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.footer-unidades h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.footer-unidades p {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-unidades {
+    margin-top: 20px;
   }
 }

@@ -2,59 +2,92 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Cliente</title>
-    <link rel="stylesheet" href="/frontend/assets/css/cadastrar_cliente.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Cliente</title>
+  <link rel="stylesheet" href="/frontend/assets/css/cadastrar_cliente.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-      <header class="topbar">
-      <div class="brand">
-        <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
-      </div>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
+    </div>
 
-      <nav class="menu">
-        <a class="menu-item" href="/frontend/telas_gerente/pontos.html">Pontos</a>
-        <a class="menu-item" href="/frontend/telas_gerente/perfis.html">Perfil dos Usuários</a>
-        <a class="menu-item" href="#">Alterar agendamento</a>
-        <a class="menu-item active" href="/frontend/telas_gerente/cadastrar_cliente.html">Cadastro do Cliente</a>
-        <div class="avatar" title="Perfil">
+    <nav class="menu">
+      <a class="menu-item" href="/frontend/telas_gerente/pontos.html">Pontos</a>
+      <a class="menu-item" href="/frontend/telas_gerente/perfis.html">Perfil dos Usuários</a>
+      <a class="menu-item" href="#">Alterar agendamento</a>
+      <a class="menu-item active" href="/frontend/telas_gerente/cadastrar_cliente.html">Cadastro do Cliente</a>
+      <div class="avatar" title="Perfil">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="12" fill="#EAF0E1"/>
-          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2"/>
-          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2"/>
+          <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
         </svg>
       </div>
-      </nav>
-    </header>
+    </nav>
+  </header>
 
-    <main>
-        <section class="foto-perfil">
-            <h2>Foto de Perfil</h2>
-            <div class="avatar-container">
-                <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Foto de Perfil" class="avatar">
-            </div>
-            <div class="foto-acoes">
-                <label class="carregar" for="upload">Carregar nova foto</label>
-                <input type="file" id="upload" hidden>
-                <button class="remover">Remover foto</button>
-            </div>
-        </section>
+  <main>
+    <section class="foto-perfil">
+      <h2>Foto de Perfil</h2>
+      <div class="avatar-container">
+        <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="Foto de Perfil" class="avatar">
+      </div>
+      <div class="foto-acoes">
+        <label class="carregar" for="upload">Carregar nova foto</label>
+        <input type="file" id="upload" hidden>
+        <button class="remover">Remover foto</button>
+      </div>
+    </section>
 
-        <form>
-            <label>Alterar Nome</label>
-            <input type="text" placeholder="Nome">
+    <form>
+      <label>Alterar Nome</label>
+      <input type="text" placeholder="Nome">
 
-            <label>Alterar E-mail</label>
-            <input type="email" placeholder="email">
+      <label>Alterar E-mail</label>
+      <input type="email" placeholder="email">
 
-            <label>Alterar Cargo</label>
-            <input type="text" placeholder="Cargo">
+      <label>Alterar Cargo</label>
+      <input type="text" placeholder="Cargo">
 
-            <button type="submit" class="salvar">Salvar</button>
-        </form>
-    </main>
+      <button type="submit" class="salvar">Salvar</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="https://www.facebook.com/rokuzen.massagem">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/rokuzen.massagem/#">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/rokuzen/?trk=top_nav_home">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:contato@rokuzen.com.br">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+      <div class="footer-unidades">
+        <h3>Unidades</h3>
+        <p><strong>Grand Plaza Shopping - Santo André</strong><br>WhatsApp: +55 11 9 1665 7900</p>
+        <p><strong>Golden Square Shopping - São Bernardo</strong><br>WhatsApp: +55 11 9 4749 5306</p>
+        <p><strong>Mooca Plaza Shopping - São Paulo</strong><br>WhatsApp: +55 11 9 5084 1087</p>
+        <p><strong>Shopping West Plaza - São Paulo</strong><br>WhatsApp: +55 11 9 1942 7901</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 ROKUZEN • Designed by Press Customizr • Powered by WordPress</p>
+    </div>
+  </footer>
+
 </body>
 
 </html>
