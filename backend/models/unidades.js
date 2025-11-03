@@ -43,4 +43,4 @@ const Unidades = {
 
 }
 
-module.exports = Unidades
+module.exports = Unidades;
