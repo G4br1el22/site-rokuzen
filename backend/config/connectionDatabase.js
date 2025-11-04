@@ -22,7 +22,6 @@ const pool = mysql.createPool({
 async function testarConexao() {
     try {
         const connection = await pool.getConnection();
-        console.log("Conexão bem sucedida com o banco de dados");  //Pode tirar esse qnd for apresentar
         connection.release();
     } catch (err) {
         console.error("Erro na conexão:", err.message);

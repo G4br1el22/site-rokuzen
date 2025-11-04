@@ -12,18 +12,9 @@ const Colaboradores = {
     },
 
     //Read
-    getEscalaColaboradorPorID: async(id_colaborador) =>{
+    getEscalaMassagistasPorIdUnidade: async(id_unidade) =>{
         try{
-            const [linhas] = await db.execute("SELECT c.nome_colaborador, e.inicio_escala, e.fim_escala FROM colaboradores c JOIN escalas e ON c.id_colaborador = e.id_colaborador WHERE c.id_colaborador = ?;", [id_colaborador],)
-            return linhas[0] || null
-        }catch(e){
-            throw new Error(`Erro ao buscar escala: ${e.message}`);
-        }
-    },
-    
-    getEscalaFranquiasPorId: async(id_unidade) =>{
-        try{
-            const [linhas] = await db.execute("SELECT c.nome_colaborador, e.inicio_escala, e.fim_escala FROM colaboradores c JOIN escalas e ON c.id_colaborador = e.id_colaborador JOIN unidades u ON c.id_unidade = u.id_unidade WHERE u.id_unidade = ?", [id_unidade])
+            const [linhas] = await db.execute("SELECT c.nome_colaborador, e.inicio_escala, e.fim_escala FROM colaboradores c JOIN escalas e ON c.id_colaborador = e.id_colaborador JOIN unidades u ON c.id_unidade = u.id_unidade WHERE u.id_unidade = ? and c.tipo_colaborador = 'massagista';", [id_unidade])
             return linhas
         }catch(e){
             throw new Error(`Erro ao buscar escalas: ${e.message}`);
