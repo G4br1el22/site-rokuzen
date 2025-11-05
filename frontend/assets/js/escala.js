@@ -1,13 +1,3 @@
-// Script simples para mudar o terapeuta ativo
-const therapists = document.querySelectorAll(".therapist");
-
-therapists.forEach(btn => {
-  btn.addEventListener("click", () => {
-    therapists.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
-});
-
 const scheduleTable = document.querySelector('.schedule tbody');
 
 // Função para mostrar a escala do terapeuta na tabela
@@ -25,7 +15,7 @@ function mostrarEscala(terapeuta) {
     const td = document.createElement('td');
 
     if (h >= inicio && h < fim) {
-      td.textContent = `${h.toString().padStart(2, '0')}:00 — Disponível`;
+      td.textContent = `${h.toString().padStart(2, '0')}:00 — Está na loja`;
       td.style.backgroundColor = '#c6d9a2'; // destaque visual
     } else {
       td.textContent = `${h.toString().padStart(2, '0')}:00`;
@@ -47,8 +37,19 @@ async function carregarEscalas() {
 
     unidades.forEach(unidade => {
       const tituloUnidade = document.createElement('h3');
-      tituloUnidade.textContent = `Unidade ${unidade.id_unidade}`;
-      aside.appendChild(tituloUnidade);
+      if(unidade.id_unidade == 1){
+        tituloUnidade.textContent = `Grand Plazza`;
+        aside.appendChild(tituloUnidade);
+      }else if (unidade.id_unidade == 2) {
+        tituloUnidade.textContent = `Golden Square`;
+        aside.appendChild(tituloUnidade);
+      } else if (unidade.id_unidade == 3) {
+        tituloUnidade.textContent = `Mooca Plazza`;
+        aside.appendChild(tituloUnidade);
+      } else {
+        tituloUnidade.textContent = `West Plazza`;
+        aside.appendChild(tituloUnidade);
+      }
     
       unidade.escala.forEach(e => {
         const botao = document.createElement('button');
