@@ -9,31 +9,44 @@
   <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@300;400;600&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="/frontend/assets/css/agendamento_gerente.css"
+  <link rel="stylesheet" href="/frontend/assets/css/agendamento_gerente.css" <body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
+    </div>
 
-<body>
-     <header class="topbar">
-      <div class="brand">
-        <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
-      </div>
-
+    <nav class="menu">
       <nav class="menu">
-       <nav class="menu">
         <a href="pontos.html" class="menu-item">Pontos</a>
         <a href="perfis.html" class="menu-item">Perfil dos usuários</a>
         <a href="#" class="menu-item active">Alterar agendamento</a>
         <a href="cadastrar_cliente.html" class="menu-item">Cadastrar Clientes</a>
+
+        <div class="user-menu">
+          <div class="avatar" id="avatar" title="Perfil">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+              <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+              <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+            </svg>
+          </div>
+
+          <div class="dropdown" id="dropdown">
+            <button id="editarPerfil">Editar Perfil</button>
+            <button id="logout">Logout</button>
+          </div>
+        </div>
       </nav>
 
-    
-        
-          <circle cx="12" cy="12" r="12" fill="#EAF0E1"/>
-          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2"/>
-          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2"/>
-        </svg>
+
+
+      <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+      <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+      <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+      </svg>
       </div>
-      </nav>
-    </header>
+    </nav>
+  </header>
 
   <main class="main">
     <section class="toolbar">
@@ -160,6 +173,7 @@
   </script>
 
   <script src="/frontend/assets/js/agendamento.js"></script>
-</body>
+  <script src="/frontend/assets/js/header.js"></script>
+  </body>
 
 </html>

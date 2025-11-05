@@ -20,13 +20,20 @@
       <a class="menu-item" href="/frontend/telas_gerente/perfis.html">Perfil dos Usuários</a>
       <a class="menu-item" href="/frontend/telas_gerente/agendamento_gerente.html">Alterar agendamento</a>
       <a class="menu-item active" href="/frontend/telas_gerente/cadastrar_cliente.html">Cadastro do Cliente</a>
-      <div class="avatar" title="Perfil">
 
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
-          <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
-          <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
-        </svg>
+      <div class="user-menu">
+        <div class="avatar" id="avatar" title="Perfil">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+            <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+            <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+          </svg>
+        </div>
+
+        <div class="dropdown" id="dropdown">
+          <button id="editarPerfil">Editar Perfil</button>
+          <button id="logout">Logout</button>
+        </div>
       </div>
     </nav>
   </header>
@@ -89,6 +96,7 @@
     </div>
   </footer>
 
+  <script src="/frontend/assets/js/header.js"></script>
 </body>
 
 </html>
