@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const Colaboradores = require('../backend/models/colaboradores');
+const Colaboradores = require('./models/colaboradores');
+const atendimentosRoutes = require('./routes/atendimentos');
 
 const app = express();
 app.use(cors()); // permite que o front acesse o back
@@ -26,6 +27,8 @@ app.get('/escala-massagistas', async (req, res) => {
     res.status(500).json({ erro: 'Erro ao buscar escalas' });
   }
 });
+
+app.use('/api/atendimentos', atendimentosRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
