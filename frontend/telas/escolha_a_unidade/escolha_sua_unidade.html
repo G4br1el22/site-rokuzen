@@ -25,12 +25,20 @@
         <a class="menu-item" href="/frontend/telas/agendamento/agendamento.html">Agendamento</a>
         <a class="menu-item" href="/frontend/telas/escala/escala.html">Escala</a>
         <a class="menu-item" href="/frontend/telas/cadastro_cliente/cadastro.html">Cadastro Cliente</a>
-        <div class="avatar" title="Perfil">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
-            <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
-            <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
-          </svg>
+
+        <div class="user-menu">
+          <div class="avatar" id="avatar" title="Perfil">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+              <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+              <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+            </svg>
+          </div>
+
+          <div class="dropdown" id="dropdown">
+            <button id="editarPerfil">Editar Perfil</button>
+            <button id="logout">Logout</button>
+          </div>
         </div>
       </nav>
     </header>
@@ -43,7 +51,8 @@
 
       <section class="cards">
 
-        <button class="card"  id="grand-plaza" onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_grand.html'">
+        <button class="card" id="grand-plaza"
+          onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_grand.html'">
           <img src="/frontend/images/unidades/grandplaza.png" alt="Grand Plaza Shopping">
           <div class="info">
             <span class="sub">Grand Plaza Shopping</span>
@@ -51,7 +60,8 @@
           </div>
         </button>
 
-        <button class="card" id="golden-square" onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_golden.html'">
+        <button class="card" id="golden-square"
+          onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_golden.html'">
           <img src="/frontend/images/unidades/golden.png" alt="Golden Square Shopping">
           <div class="info">
             <span class="sub">Golden Square Shopping</span>
@@ -59,7 +69,8 @@
           </div>
         </button>
 
-        <button class="card" id="mooca" onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_mooca.html'">
+        <button class="card" id="mooca"
+          onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_mooca.html'">
           <img src="/frontend/images/unidades/mooca.png" alt="Mooca Plaza Shopping">
           <div class="info">
             <span class="sub">Mooca Plaza Shopping</span>
@@ -67,7 +78,8 @@
           </div>
         </button>
 
-        <button class="card" id="west-plaza" onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_west.html'">
+        <button class="card" id="west-plaza"
+          onclick="window.location.href='/frontend/telas/escolha_o_posto/escolha_o_posto_west.html'">
           <img src="/frontend/images/unidades/west.png" alt="West Plaza Shopping">
           <div class="info">
             <span class="sub">West Plaza Shopping</span>
@@ -128,5 +140,8 @@
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
+  <script src="/frontend/assets/js/header.js"></script>
+
 </body>
+
 </html>

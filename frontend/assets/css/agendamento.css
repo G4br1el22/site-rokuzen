@@ -72,12 +72,64 @@ body {
   background: rgba(84, 102, 54, 0.1);
 }
 
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .avatar img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   border: 2px solid #c6d9a2;
   object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.avatar:hover img {
+  transform: scale(1.05);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  z-index: 100;
+  min-width: 150px;
+}
+
+.dropdown button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown button:hover {
+  background-color: #e6e6d6;
+}
+
+.dropdown.active {
+  display: block;
 }
 
 .main {
