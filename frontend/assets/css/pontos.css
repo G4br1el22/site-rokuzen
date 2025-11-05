@@ -27,6 +27,8 @@ body {
 
 .brand .logo {
   height: 54px;
+  margin-left: 36px;
+  margin-top: 18px;
 }
 
 .menu {
@@ -34,7 +36,12 @@ body {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin-top: 18px;
+  margin-left: 36px;
+  margin-right: 18px;
 }
+
+
 
 .menu .menu-item {
   text-decoration: none;
