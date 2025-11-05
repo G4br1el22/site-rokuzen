@@ -26,7 +26,7 @@ body {
   flex-direction: column;
 }
 
-/* ---------- HEADER ---------- */
+
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -61,7 +61,7 @@ body {
   background: rgba(84, 102, 54, 0.08);
 }
 
-/* ---------- MAIN ---------- */
+
 main {
   flex: 1;
   display: flex;
@@ -95,7 +95,7 @@ main {
   font-weight: 500;
 }
 
-/* ---------- CARDS COMO BOTÕES ---------- */
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -158,7 +158,7 @@ main {
   margin-top: 3px;
 }
 
-/* ---------- FOOTER ---------- */
+
 footer {
   background-color: #4c5f32;
   color: #fff;
@@ -204,7 +204,7 @@ footer {
   opacity: 0.8;
 }
 
-/* ---------- RESPONSIVO ---------- */
+
 @media (max-width: 1200px) {
   main {
     flex-direction: column;
