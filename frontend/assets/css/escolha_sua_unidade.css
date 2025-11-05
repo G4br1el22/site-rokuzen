@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   height: 100%;
   width: 100%;
 }
@@ -27,6 +26,7 @@ body {
   flex-direction: column;
 }
 
+/* ---------- HEADER ---------- */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -56,22 +56,12 @@ body {
   transition: background 0.2s;
 }
 
-.menu .menu-item:hover {
-  background: rgba(84, 102, 54, 0.08);
-}
-
+.menu .menu-item:hover,
 .menu .menu-item.active {
   background: rgba(84, 102, 54, 0.08);
 }
 
-.avatar img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 2px solid #c6d9a2;
-  object-fit: cover;
-}
-
+/* ---------- MAIN ---------- */
 main {
   flex: 1;
   display: flex;
@@ -105,13 +95,13 @@ main {
   font-weight: 500;
 }
 
+/* ---------- CARDS COMO BOTÕES ---------- */
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 0px;
 }
 
 :root {
@@ -126,21 +116,24 @@ main {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
+  border: none;
+  background: none;
 }
 
 .card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .info {
@@ -165,121 +158,7 @@ main {
   margin-top: 3px;
 }
 
-.controles {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex: 1;
-}
-
-.btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 2px solid #4c5f32;
-  background: none;
-  color: #4c5f32;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.btn:hover {
-  background-color: #4c5f32;
-  color: #fff;
-}
-
-.linha {
-  flex: 1;
-  height: 2px;
-  background-color: #4c5f32;
-  opacity: 0.3;
-}
-
-.linha-inferior {
-  height: 2px;
-  background-color: #4c5f32;
-  opacity: 0.3;
-  margin-top: 40px;
-  width: 100%;
-}
-
-
-@media (max-width: 1200px) {
-  .container {
-    padding: 20px 40px;
-  }
-
-  main {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .texto {
-    padding: 20px;
-    margin-right: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .topbar {
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .menu {
-    justify-content: center;
-  }
-
-  .texto {
-    padding: 16px;
-  }
-
-  .cards {
-    gap: 16px;
-  }
-
-  :root {
-    --card-height: 350px;
-  }
-
-  .card {
-    flex: 0 1 48%;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 12px;
-  }
-
-  .texto h1 {
-    font-size: 36px;
-  }
-
-  .texto p {
-    font-size: 15px;
-  }
-
-  :root {
-    --card-height: 300px;
-  }
-
-  .card {
-    flex: 0 1 100%;
-  }
-
-  .info h2 {
-    font-size: 20px;
-  }
-}
-
+/* ---------- FOOTER ---------- */
 footer {
   background-color: #4c5f32;
   color: #fff;
@@ -307,14 +186,7 @@ footer {
   color: #a5d6a7;
 }
 
-.footer-social a {
-  pointer-events: auto;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.footer-unidades h4 {
+.footer-unidades h3 {
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: 600;
@@ -332,7 +204,44 @@ footer {
   opacity: 0.8;
 }
 
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 1200px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .texto {
+    padding: 20px;
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .menu {
+    justify-content: center;
+  }
+
+  .cards {
+    gap: 16px;
+  }
+
+  :root {
+    --card-height: 350px;
+  }
+
+  .card {
+    flex: 0 1 48%;
+  }
+
   .footer-content {
     flex-direction: column;
     align-items: center;
@@ -341,5 +250,31 @@ footer {
 
   .footer-unidades {
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  .texto h1 {
+    font-size: 36px;
+  }
+
+  .texto p {
+    font-size: 15px;
+  }
+
+  :root {
+    --card-height: 300px;
+  }
+
+  .card {
+    flex: 0 1 100%;
+  }
+
+  .info h2 {
+    font-size: 20px;
   }
 }
