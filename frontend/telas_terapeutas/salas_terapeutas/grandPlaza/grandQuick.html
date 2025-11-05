@@ -16,26 +16,33 @@
   <div class="container">
 
     <header class="topbar">
-            <div class="brand">
-                <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
-            </div>
+      <div class="brand">
+        <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
+      </div>
 
-            <nav class="menu">
-                <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
-                <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
-                    individual</a>
-                <a class="menu-item active" href="#">Salas</a>
-                <a class="menu-item" href="/frontend/telas_terapeutas/cadastroCliente/cadastro_do_cliente.html">Cadastro
-                    Cliente</a>
-                <div class="avatar" title="Perfil">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
-                        <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
-                        <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
-                    </svg>
-                </div>
-            </nav>
-        </header>
+      <nav class="menu">
+        <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
+        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
+          individual</a>
+        <a class="menu-item active" href="#">Salas</a>
+        <a class="menu-item" href="/frontend/telas_terapeutas/cadastroCliente/cadastro_do_cliente.html">Cadastro
+          Cliente</a>
+        <div class="user-menu">
+          <div class="avatar" id="avatar" title="Perfil">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+              <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+              <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+            </svg>
+          </div>
+
+          <div class="dropdown" id="dropdown">
+            <button id="editarPerfil">Editar Perfil</button>
+            <button id="logout">Logout</button>
+          </div>
+        </div>
+      </nav>
+    </header>
     <main>
       <section class="texto">
         <h1>Cadeiras Quick - Grand Plaza Shopping</h1>
@@ -121,6 +128,7 @@
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
+  <script src="/frontend/assets/js/header.js"></script>
 </body>
 
 </html>
