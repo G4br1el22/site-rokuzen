@@ -27,6 +27,8 @@ body {
 
 .brand .logo {
   height: 54px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .menu {
