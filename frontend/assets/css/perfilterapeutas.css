@@ -209,3 +209,33 @@ footer {
     margin-top: 20px;
   }
 }
+
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-button {
+  background-color: #4a6623;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+  font-family: "Albert Sans", sans-serif;
+}
+
+.back-button i {
+  font-size: 1rem;
+}
+
+.back-button:hover {
+  background-color: #3b511c;
+}
