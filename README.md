@@ -14,6 +14,29 @@ para a ROKUZEN.
 | Rebecca Miki Uema                   | 25.01550-4   | @rebeccauema        | Dev. e Documentação               |
 
 ```
+## Estrutura do Projeto
+📁 site-rokuzen
+ |--📁backend
+ |   |--📁config
+ |   |--📁controller
+ |   |--📁models
+ |   |--📁router
+ |   |-- server.js
+ |
+ |--📁frontend
+ |   |--📁assets
+ |   |--📁images
+ |   |--📁telas
+ |   |--📁telas_gerente
+ |   |--📁telas_terapeutas
+ |
+ |-- .gitignore
+ |
+ |-- package-lock.json
+ |-- package.json
+ |
+ |-- README.md
+
 ## Tecnologias Utilizadas
 - HTML
 - CSS
