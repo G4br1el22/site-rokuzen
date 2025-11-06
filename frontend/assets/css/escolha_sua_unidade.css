@@ -192,14 +192,14 @@ main {
 }
 
 .sub {
-  font-family: 'Albert Sans', sans-serif;
+  font-family: 'Bayon', sans-serif;
   font-size: 13px;
   font-weight: 400;
   opacity: 0.9;
 }
 
 .info h2 {
-  font-family: 'Bayon', sans-serif;
+  font-family: 'Albert Sans', sans-serif;
   font-size: 26px;
   line-height: 1.1;
   margin-top: 3px;
