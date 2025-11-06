@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital@0;1&display=swap');
+
 
 body {
   margin: 0;
@@ -35,14 +34,14 @@ body {
 }
 
 .sidebar h1 {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: Bayon, sans-serif;
   font-size: 3rem;
   margin-bottom: 30px;
   letter-spacing: 1px;
 }
 
 .sidebar button {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: Bayon, sans-serif;
   background-color: white;
   color: #4a6623;
   border: none;
@@ -72,7 +71,7 @@ header {
 }
 
 header h2 {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: Bayon, sans-serif;
   font-size: 3rem;
   color: #4a6623;
   font-weight: 800;
