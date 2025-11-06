@@ -1,85 +1,78 @@
-
-
-body {
-    font-family: "Albert Sans", sans-serif;
-    background-color: #f9f9e8;
-    color: #333;
+* {
     margin: 0;
     padding: 0;
-}
-
-.container {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    background-color: #f8f9ef;
+    font-family: 'Albert Sans', sans-serif;
+    color: #4c5f32;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .container {
     flex: 1;
     width: 100%;
     padding: 20px 40px;
     display: flex;
     flex-direction: column;
-}
-
-.topbar {
+  }
+  
+  .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px 0;
+    padding: 0px;
     border-bottom: 2px solid #d8e0c6;
-}
-
-.brand .logo {
-    height: 54px;
-    margin-top: 18px;
-    margin-left: 36px;
+  }
   
-}
-
-.menu {
+  .brand .logo {
+    height: 50px;
+  }
+  
+  .menu {
     display: flex;
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-top: 18px;
-    margin-left: 36px;
-    margin-right: 18px;
-}
-
-.menu .menu-item {
+  }
+  
+  .menu .menu-item {
     text-decoration: none;
     color: #4c5f32;
     font-weight: 600;
     padding: 6px 10px;
     border-radius: 8px;
     transition: background 0.2s;
-}
-
-.menu .menu-item:hover {
+  }
+  
+  .menu .menu-item:hover, .menu .menu-item.active {
     background: rgba(84, 102, 54, 0.08);
-}
-
-.menu .menu-item.active {
-    background: rgba(84, 102, 54, 0.08);
-}
-
-.avatar {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar img {
-    width: 45px;
-    height: 45px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 2px solid #c6d9a2;
-    object-fit: cover;
+    overflow: hidden;
     transition: transform 0.2s ease;
-}
-
-.avatar:hover img {
+  }
+  
+  .avatar:hover img {
     transform: scale(1.05);
-}
-
-.dropdown {
+  }
+  
+  .dropdown {
     display: none;
     position: absolute;
     right: 0;
@@ -91,9 +84,9 @@ body {
     padding: 8px 0;
     z-index: 100;
     min-width: 150px;
-}
-
-.dropdown button {
+  }
+  
+  .dropdown button {
     display: block;
     width: 100%;
     background: none;
@@ -104,15 +97,16 @@ body {
     color: var(--text);
     cursor: pointer;
     transition: background 0.2s ease;
-}
-
-.dropdown button:hover {
+  }
+  
+  .dropdown button:hover {
     background-color: #e6e6d6;
-}
-
-.dropdown.active {
+  }
+  
+  .dropdown.active {
     display: block;
-}
+  }
+  
 
 .foto-perfil {
     text-align: center;
