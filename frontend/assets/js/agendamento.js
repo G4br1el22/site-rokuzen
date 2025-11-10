@@ -13,46 +13,27 @@ const viewBtns = document.querySelectorAll('.view-btn');
 let viewMode = 'day';
 let currentDate = new Date();
 
-const API_URL = "http://localhost:3000/api/atendimentos";
-const ID_UNIDADE = 1; // você pode trocar conforme o gerente logado
-
-// --- 🟢 Sincronização entre abas ---
-const canal = new BroadcastChannel("agenda_sync");
+// 🟢 Canal para sincronizar apenas os DADOS entre abas
+const canal = new BroadcastChannel("agenda_data_sync");
 
 canal.onmessage = (e) => {
-  const { tipo, dados } = e.data;
-
-  if (tipo === "alterarData") {
-    currentDate = new Date(dados);
-    renderAgenda();
-  } else if (tipo === "alterarView") {
-    viewMode = dados;
-    viewBtns.forEach(x => x.classList.remove('active'));
-    const btn = document.querySelector(`[data-view="${viewMode}"]`);
-    if (btn) btn.classList.add('active');
-    renderAgenda();
-  } else if (tipo === "novoEvento") {
-    renderAgenda();
+  if (e.data.tipo === "atualizarEventos") {
+    renderAgenda(); // só recarrega os dados na outra aba
   }
 };
 
-function sincronizar(tipo, dados) {
-  canal.postMessage({ tipo, dados });
+// Função auxiliar pra notificar outras abas que os dados mudaram
+function sincronizarDados() {
+  canal.postMessage({ tipo: "atualizarEventos" });
 }
-// --- 🔵 Fim da sincronização ---
 
+// 🧠 Funções utilitárias
 function formatDateTitle(d) {
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   return d.toLocaleDateString('pt-BR', options);
 }
 
 function zero(n) { return n < 10 ? '0' + n : String(n); }
-
-function calcularDuracao(inicio, fim) {
-  const start = new Date(inicio);
-  const end = new Date(fim);
-  return (end - start) / (1000 * 60 * 60); // duração em horas
-}
 
 function calcularFim(date, start, duracaoHoras) {
   const [h, m] = start.split(":").map(Number);
@@ -62,53 +43,27 @@ function calcularFim(date, start, duracaoHoras) {
   return inicio.toISOString().slice(0, 19);
 }
 
-async function loadEvents() {
-  try {
-    const res = await fetch(`${API_URL}/${ID_UNIDADE}`);
-    if (!res.ok) throw new Error("Erro ao buscar agendamentos do servidor");
-    const data = await res.json();
-
-    // Converte os registros do banco para o formato usado na interface
-    return data.map((ev, i) => ({
-      id: i + 1,
-      title: `${ev.cliente} – ${ev.servico} (${ev.sala})`,
-      date: ev.inicio_atendimento.slice(0, 10),
-      start: ev.inicio_atendimento.slice(11, 16),
-      duration: calcularDuracao(ev.inicio_atendimento, ev.fim_atendimento)
-    }));
-  } catch (err) {
-    console.error("❌ Erro ao carregar eventos:", err);
-    return [];
-  }
+// 🗂️ Armazenamento local (substitui o backend)
+function loadEvents() {
+  const stored = localStorage.getItem("eventos");
+  return stored ? JSON.parse(stored) : [];
 }
 
-async function saveEventToDB(evento) {
-  try {
-    const body = {
-      inicio_atendimento: `${evento.date}T${evento.start}:00`,
-      fim_atendimento: calcularFim(evento.date, evento.start, evento.duration),
-      pagamento: "pendente",
-      id_servico: 1,
-      id_cliente: 1,
-      id_colaborador: 1,
-      id_sala: 1,
-      id_unidade: ID_UNIDADE
-    };
-
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
-
-    if (!res.ok) throw new Error("Erro ao salvar atendimento");
-    console.log("✅ Atendimento salvo no banco com sucesso!");
-  } catch (err) {
-    console.error("❌ Erro ao salvar no banco:", err);
-  }
+function saveEventToLocal(evento) {
+  const eventos = loadEvents();
+  eventos.push(evento);
+  localStorage.setItem("eventos", JSON.stringify(eventos));
+  sincronizarDados();
 }
 
+function clearOldEvents() {
+  const eventos = loadEvents().filter(e => !!e.date);
+  localStorage.setItem("eventos", JSON.stringify(eventos));
+}
+
+// 🗓️ Renderização principal
 async function renderAgenda() {
+  clearOldEvents();
   dateTitle.textContent = formatDateTitle(currentDate);
   dayNumber.textContent = String(currentDate.getDate());
   agendaContent.innerHTML = '';
@@ -126,7 +81,7 @@ async function renderDayView() {
     agendaContent.appendChild(row);
   }
 
-  const events = await loadEvents();
+  const events = loadEvents();
   const iso = currentDate.toISOString().slice(0, 10);
   const eventsToday = events.filter(ev => ev.date === iso);
 
@@ -157,7 +112,7 @@ async function renderWeekView() {
   const diff = (day === 0) ? -6 : (1 - day);
   start.setDate(start.getDate() + diff);
 
-  const events = await loadEvents();
+  const events = loadEvents();
 
   for (let i = 0; i < 7; i++) {
     const col = document.createElement('div');
@@ -207,7 +162,7 @@ async function renderMonthView() {
   const startDay = first.getDay() === 0 ? 6 : first.getDay() - 1;
   const total = last.getDate();
 
-  const events = await loadEvents();
+  const events = loadEvents();
 
   for (let i = 0; i < 42; i++) {
     const cell = document.createElement('div');
@@ -243,11 +198,10 @@ async function renderMonthView() {
   agendaContent.appendChild(grid);
 }
 
-// --- Navegação e eventos de UI ---
+// 🕹️ Controles de navegação
 btnToday.addEventListener('click', () => {
   currentDate = new Date();
   renderAgenda();
-  sincronizar("alterarData", currentDate.toISOString());
 });
 
 btnPrev.addEventListener('click', () => {
@@ -255,7 +209,6 @@ btnPrev.addEventListener('click', () => {
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() - 7);
   else currentDate.setMonth(currentDate.getMonth() - 1);
   renderAgenda();
-  sincronizar("alterarData", currentDate.toISOString());
 });
 
 btnNext.addEventListener('click', () => {
@@ -263,7 +216,6 @@ btnNext.addEventListener('click', () => {
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() + 7);
   else currentDate.setMonth(currentDate.getMonth() + 1);
   renderAgenda();
-  sincronizar("alterarData", currentDate.toISOString());
 });
 
 viewBtns.forEach(b => {
@@ -272,10 +224,10 @@ viewBtns.forEach(b => {
     b.classList.add('active');
     viewMode = b.dataset.view;
     renderAgenda();
-    sincronizar("alterarView", viewMode);
   });
 });
 
+// 📝 Modal de novo evento
 btnNew.addEventListener('click', () => {
   const dt = new Date(currentDate);
   const dateInput = eventForm.querySelector('[name="date"]');
@@ -307,14 +259,14 @@ eventForm.addEventListener('submit', async (e) => {
     duration: parseFloat(form.get('duration')) || 1
   };
 
-  await saveEventToDB(ev);
+  saveEventToLocal(ev);
   modal.classList.add('hidden');
   modal.setAttribute('aria-hidden', 'true');
   eventForm.reset();
   renderAgenda();
-  sincronizar("novoEvento");
 });
 
+// 🚀 Inicialização
 window.addEventListener('load', () => {
   renderAgenda();
 });
