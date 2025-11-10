@@ -1,0 +1,306 @@
+:root {
+    /* Cores baseadas no exemplo */
+    --background: #f8f9ef;
+    --text-primary: #4c5f32;
+    --text-secondary: #526d36;
+    --border-color: #d8e0c6;
+    --hover-bg: rgba(84, 102, 54, 0.08);
+    --button-bg: #4c5f32;
+    --list-bg: #eef3e4;
+    --list-hover: #e0ecd0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: var(--background);
+    font-family: 'Albert Sans', sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Topbar/Navbar Styles --- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.brand .logo {
+    height: 54px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.menu .menu-item {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.menu .menu-item:hover,
+.menu .menu-item.active {
+    background: var(--hover-bg);
+}
+
+.user-menu {
+    position: relative;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+    z-index: 100;
+    min-width: 150px;
+}
+
+.dropdown button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.dropdown button:hover {
+    background-color: #e6e6d6;
+}
+
+.dropdown.active {
+    display: block;
+}
+
+/* --- Admin Layout (Main Content) Styles --- */
+.admin-layout {
+    display: flex;
+    flex-direction: row; 
+    margin-top: 40px;
+    gap: 40px;
+    flex: 1;
+}
+
+h2 {
+    font-family: 'Bayon', sans-serif;
+    font-size: 30px;
+    color: #48652b;
+    margin-bottom: 20px;
+}
+
+.lista-usuarios {
+    width: 40%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+
+/* Estilo para a Barra de Pesquisa */
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #c7d5b3;
+    margin-bottom: 20px;
+    font-family: 'Albert Sans', sans-serif;
+    color: var(--text-primary);
+}
+
+.lista-usuarios ul {
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+.lista-usuarios ul li {
+    padding: 12px;
+    background: var(--list-bg);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 400;
+    transition: background 0.2s;
+}
+.lista-usuarios ul li:hover,
+.lista-usuarios ul li.selected { 
+    background: var(--list-hover); 
+}
+
+
+.editor-usuario {
+    width: 60%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+.editor-usuario form {
+    display: flex;
+    flex-direction: column;
+}
+
+label { 
+    font-weight: 600; 
+    display: block; 
+    margin-top: 20px;
+    color: var(--text-primary);
+}
+
+/* Estilo geral para inputs/selects */
+input:not([type="file"]):not(#searchInput), 
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #c7d5b3;
+    margin-top: 8px;
+    font-family: 'Albert Sans', sans-serif;
+    color: var(--text-primary);
+}
+
+
+/* --- Estilos para a Ação de Foto --- */
+
+.foto-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 10px;
+}
+
+.preview-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px; 
+    object-fit: cover;
+    border: 4px solid #cdd9bd;
+    display: block;
+}
+
+.foto-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    /* CHAVE PARA O ALINHAMENTO VERTICAL */
+    align-items: center; 
+}
+
+.carregar,
+.remover {
+    /* REMOÇÃO DE BORDAS E FUNDOS */
+    background: none; 
+    border: none;
+    
+    /* PADDING E MARGIN PADRONIZADOS PARA ALINHAMENTO */
+    padding: 5px 10px;
+    margin: 0; 
+    
+    border-radius: 6px;
+    transition: color 0.3s ease, box-shadow 0.3s ease; 
+    text-decoration: none; 
+}
+
+.carregar {
+    color: var(--text-primary); 
+    cursor: pointer;
+}
+
+.carregar:hover {
+    background-color: transparent; 
+    box-shadow: none;
+    color: #444; 
+    text-decoration: underline; 
+}
+
+.remover {
+    color: red;
+    cursor: pointer;
+}
+
+.remover:hover {
+    background-color: transparent; 
+    box-shadow: none;
+    text-decoration: underline; 
+}
+
+.salvar {
+    width: 100%;
+    padding: 12px;
+    background: var(--button-bg);
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: opacity .2s;
+    font-weight: 600;
+    font-size: 16px;
+}
+.salvar:hover { opacity: 0.8; }
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column; 
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .lista-usuarios, .editor-usuario {
+        width: 100%;
+        padding: 15px;
+    }
+}
