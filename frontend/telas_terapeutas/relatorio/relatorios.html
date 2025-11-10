@@ -21,7 +21,8 @@
       <a class="menu-item active" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
       <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala individual</a>
       <a class="menu-item" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
-   
+      <a class="menu-item" href="/frontend/telas_terapeutas/cadastroCliente/cadastro_do_cliente.html">Cadastro
+        Cliente</a>
       <div class="user-menu">
         <div class="avatar" id="avatar" title="Perfil">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -42,31 +43,30 @@
   <h1>RELATÓRIOS</h1>
 
   <div class="container">
-    <div class="cards-grid">
-      <!--A data, o horário, o serviço e a unidade abaixo estão apenas servindo como modelo-->
-      <div class="card" onclick="abrirRelatorio('14:00')">
-        Quick Massage – Grand Plaza / Santo André<br>
-        Dia: 14/11 Horário: 14:00
-      </div>
-      <div class="card" onclick="abrirRelatorio('15:00')">
-        Quick Massage – Grand Plaza / Santo André<br>
-        Dia: 14/11 Horário: 15:00
-      </div>
-      <div class="card" onclick="abrirRelatorio('16:00')">
-        Quick Massage – Grand Plaza / Santo André<br>
-        Dia: 14/11 Horário: 16:00
-      </div>
-      <div class="card" onclick="abrirRelatorio('17:00')">
-        Quick Massage – Grand Plaza / Santo André<br>
-        Dia: 14/11 Horário: 17:00
-      </div>
-      <div class="card" onclick="abrirRelatorio('18:00')">
-        Quick Massage – Grand Plaza / Santo André<br>
-        Dia: 14/11 Horário: 18:00
-      </div>
-      <div class="card" onclick="abrirRelatorio('19:00')">
-        Quick Massage – Grand Plaza / Santo André<br>
-        Dia: 14/11 Horário: 19:00
+    <div class="add-relatorio">
+      <button id="btnAdicionar"><i class="fa-solid fa-plus"></i> Adicionar Relatório</button>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+      <!-- Os relatórios salvos aparecerão aqui -->
+    </div>
+  </div>
+
+  <!-- Modal para adicionar novo relatório -->
+  <div id="modalNovoRelatorio" class="modal">
+    <div class="modal-content">
+      <h2>Novo Relatório</h2>
+      <label>Serviço:</label>
+      <input type="text" id="novoServico" placeholder="Ex: Quick Massage" required>
+      <label>Unidade:</label>
+      <input type="text" id="novaUnidade" placeholder="Ex: Grand Plaza / Santo André" required>
+      <label>Data:</label>
+      <input type="date" id="novaData" required>
+      <label>Horário:</label>
+      <input type="time" id="novoHorario" required>
+      <div class="botoes-modal">
+        <button id="salvarNovo">Salvar</button>
+        <button id="cancelarNovo">Cancelar</button>
       </div>
     </div>
   </div>
@@ -103,8 +103,7 @@
     </div>
   </footer>
 
-
-  <!--Vlibras-->
+  <!--VLibras-->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>

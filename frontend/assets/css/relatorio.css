@@ -367,9 +367,8 @@ footer {
 
 .add-relatorio {
   display: flex;
-  justify-content: flex-start; 
-  margin-bottom: 20px;
-  padding-left: 0px; 
+  justify-content: flex-start;
+  /* Alinha à esquerda / margin-bottom: 20px; padding-left: 40px; / opcional: dá um pequeno respiro da borda */
 }
 
 #btnAdicionar {
@@ -386,7 +385,6 @@ footer {
 #btnAdicionar:hover {
   background-color: #b0c986;
 }
-
 
 .modal {
   display: none;
@@ -437,3 +435,5 @@ footer {
 .botoes-modal button:hover {
   background-color: #b0c986;
 }
+
+
