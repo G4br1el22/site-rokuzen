@@ -357,3 +357,76 @@ footer {
     margin-top: 20px;
   }
 }
+
+.add-relatorio {
+  display: flex;
+  justify-content: flex-start; /* Alinha à esquerda */
+  margin-bottom: 20px;
+  padding-left: 0px; /* opcional: dá um pequeno respiro da borda */
+}
+
+#btnAdicionar {
+  background-color: #c6d9a2;
+  color: #4c5f32;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btnAdicionar:hover {
+  background-color: #b0c986;
+}
+
+/* --- Modal --- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(76, 95, 50, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #f8f9ef;
+  padding: 30px;
+  border-radius: 15px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #4c5f32;
+}
+
+.modal-content input {
+  padding: 8px;
+  border: 1px solid #c6d9a2;
+  border-radius: 8px;
+}
+
+.botoes-modal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.botoes-modal button {
+  background-color: #c6d9a2;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #4c5f32;
+}
+
+.botoes-modal button:hover {
+  background-color: #b0c986;
+}
