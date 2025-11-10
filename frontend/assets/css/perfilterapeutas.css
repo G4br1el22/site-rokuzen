@@ -198,6 +198,12 @@ footer {
   opacity: 0.8;
 }
 
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
+}
+
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;

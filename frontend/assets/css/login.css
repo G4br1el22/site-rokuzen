@@ -178,3 +178,9 @@ footer {
 .senha-container i:hover {
   color: #4f6326;
 }
+
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
+}
