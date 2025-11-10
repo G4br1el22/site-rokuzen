@@ -16,6 +16,31 @@ let currentDate = new Date();
 const API_URL = "http://localhost:3000/api/atendimentos";
 const ID_UNIDADE = 1; // você pode trocar conforme o gerente logado
 
+// --- 🟢 Sincronização entre abas ---
+const canal = new BroadcastChannel("agenda_sync");
+
+canal.onmessage = (e) => {
+  const { tipo, dados } = e.data;
+
+  if (tipo === "alterarData") {
+    currentDate = new Date(dados);
+    renderAgenda();
+  } else if (tipo === "alterarView") {
+    viewMode = dados;
+    viewBtns.forEach(x => x.classList.remove('active'));
+    const btn = document.querySelector(`[data-view="${viewMode}"]`);
+    if (btn) btn.classList.add('active');
+    renderAgenda();
+  } else if (tipo === "novoEvento") {
+    renderAgenda();
+  }
+};
+
+function sincronizar(tipo, dados) {
+  canal.postMessage({ tipo, dados });
+}
+// --- 🔵 Fim da sincronização ---
+
 function formatDateTitle(d) {
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   return d.toLocaleDateString('pt-BR', options);
@@ -45,7 +70,7 @@ async function loadEvents() {
 
     // Converte os registros do banco para o formato usado na interface
     return data.map((ev, i) => ({
-      id: i + 1, // gera um ID temporário
+      id: i + 1,
       title: `${ev.cliente} – ${ev.servico} (${ev.sala})`,
       date: ev.inicio_atendimento.slice(0, 10),
       start: ev.inicio_atendimento.slice(11, 16),
@@ -63,7 +88,7 @@ async function saveEventToDB(evento) {
       inicio_atendimento: `${evento.date}T${evento.start}:00`,
       fim_atendimento: calcularFim(evento.date, evento.start, evento.duration),
       pagamento: "pendente",
-      id_servico: 1,      // por enquanto fixo; depois podemos ligar ao select "servicos"
+      id_servico: 1,
       id_cliente: 1,
       id_colaborador: 1,
       id_sala: 1,
@@ -94,7 +119,6 @@ async function renderAgenda() {
 }
 
 async function renderDayView() {
-  // Cria as linhas de horário
   for (let h = 0; h < 24; h++) {
     const row = document.createElement('div');
     row.className = 'hour-row';
@@ -102,7 +126,6 @@ async function renderDayView() {
     agendaContent.appendChild(row);
   }
 
-  // Busca eventos do backend
   const events = await loadEvents();
   const iso = currentDate.toISOString().slice(0, 10);
   const eventsToday = events.filter(ev => ev.date === iso);
@@ -110,7 +133,6 @@ async function renderDayView() {
   const rows = agendaContent.querySelectorAll('.hour-row');
   const rowHeight = rows[0] ? rows[0].getBoundingClientRect().height : 52;
 
-  // Renderiza os eventos
   eventsToday.forEach(ev => {
     const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
     const top = (hh + mm / 60) * rowHeight + 8;
@@ -221,9 +243,11 @@ async function renderMonthView() {
   agendaContent.appendChild(grid);
 }
 
+// --- Navegação e eventos de UI ---
 btnToday.addEventListener('click', () => {
   currentDate = new Date();
   renderAgenda();
+  sincronizar("alterarData", currentDate.toISOString());
 });
 
 btnPrev.addEventListener('click', () => {
@@ -231,6 +255,7 @@ btnPrev.addEventListener('click', () => {
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() - 7);
   else currentDate.setMonth(currentDate.getMonth() - 1);
   renderAgenda();
+  sincronizar("alterarData", currentDate.toISOString());
 });
 
 btnNext.addEventListener('click', () => {
@@ -238,14 +263,16 @@ btnNext.addEventListener('click', () => {
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() + 7);
   else currentDate.setMonth(currentDate.getMonth() + 1);
   renderAgenda();
+  sincronizar("alterarData", currentDate.toISOString());
 });
 
 viewBtns.forEach(b => {
-  b.addEventListener('click', (ev) => {
+  b.addEventListener('click', () => {
     viewBtns.forEach(x => x.classList.remove('active'));
     b.classList.add('active');
     viewMode = b.dataset.view;
     renderAgenda();
+    sincronizar("alterarView", viewMode);
   });
 });
 
@@ -280,11 +307,12 @@ eventForm.addEventListener('submit', async (e) => {
     duration: parseFloat(form.get('duration')) || 1
   };
 
-  await saveEventToDB(ev); // agora salva no banco
+  await saveEventToDB(ev);
   modal.classList.add('hidden');
   modal.setAttribute('aria-hidden', 'true');
   eventForm.reset();
   renderAgenda();
+  sincronizar("novoEvento");
 });
 
 window.addEventListener('load', () => {
