@@ -88,17 +88,23 @@ async function renderDayView() {
   const rows = agendaContent.querySelectorAll('.hour-row');
   const rowHeight = rows[0] ? rows[0].getBoundingClientRect().height : 52;
 
-  eventsToday.forEach(ev => {
-    const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
-    const top = (hh + mm / 60) * rowHeight + 8;
-    const height = Math.max(36, (ev.duration || 1) * rowHeight - 8);
-    const div = document.createElement('div');
-    div.className = 'event';
-    div.style.top = `${top}px`;
-    div.style.height = `${height}px`;
-    div.textContent = ev.title;
-    agendaContent.appendChild(div);
-  });
+  eventsToday.forEach((ev, i) => {
+  const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
+  const top = (hh + mm / 60) * rowHeight + 8;
+  const height = 80; // altura fixa pra parecer um quadradinho
+  const left = 100 + (i * 90); // desloca um pouco pro lado (evita sobreposição)
+
+  const div = document.createElement('div');
+  div.className = 'event';
+  div.style.top = `${top}px`;
+  div.style.left = `${left}px`;
+  div.style.height = `${height}px`;
+  div.style.width = `80px`;
+  div.textContent = ev.title;
+
+  agendaContent.appendChild(div);
+});
+
 }
 
 async function renderWeekView() {
