@@ -291,7 +291,28 @@ select {
 }
 .salvar:hover { opacity: 0.8; }
 
+<<<<<<< HEAD
 /* Media Queries para responsividade */
+=======
+.footer-unidades p {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
+}
+
+>>>>>>> 8873f998131a78eb33bbc3066c6e4911a0588d90
 @media (max-width: 768px) {
   .admin-layout {
       flex-direction: column; 
