@@ -292,6 +292,7 @@ select {
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  padding-right: 40px;
 }
 
 footer {
