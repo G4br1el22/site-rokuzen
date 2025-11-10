@@ -360,9 +360,9 @@ footer {
 
 .add-relatorio {
   display: flex;
-  justify-content: flex-start; /* Alinha à esquerda */
+  justify-content: flex-start; 
   margin-bottom: 20px;
-  padding-left: 0px; /* opcional: dá um pequeno respiro da borda */
+  padding-left: 0px; 
 }
 
 #btnAdicionar {
@@ -380,7 +380,7 @@ footer {
   background-color: #b0c986;
 }
 
-/* --- Modal --- */
+
 .modal {
   display: none;
   position: fixed;
