@@ -73,6 +73,7 @@ async function renderAgenda() {
   return renderDayView();
 }
 
+
 async function renderDayView() {
   for (let h = 0; h < 24; h++) {
     const row = document.createElement('div');
@@ -89,22 +90,26 @@ async function renderDayView() {
   const rowHeight = rows[0] ? rows[0].getBoundingClientRect().height : 52;
 
   eventsToday.forEach((ev, i) => {
-  const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
-  const top = (hh + mm / 60) * rowHeight + 8;
-  const height = 80; // altura fixa pra parecer um quadradinho
-  const left = 100 + (i * 90); // desloca um pouco pro lado (evita sobreposição)
+    const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
+    const top = (hh + mm / 60) * rowHeight + 8;
+    const height = 80; // altura fixa pra parecer um quadradinho
+    const left = 100 + (i * 90); // desloca um pouco pro lado (evita sobreposição)
 
-  const div = document.createElement('div');
-  div.className = 'event';
-  div.style.top = `${top}px`;
-  div.style.left = `${left}px`;
-  div.style.height = `${height}px`;
-  div.style.width = `80px`;
-  div.textContent = ev.title;
+    const div = document.createElement('div');
+    div.className = 'event';
+    div.style.top = `${top}px`;
+    div.style.left = `${left}px`;
+    div.style.height = `${height}px`;
+    div.style.width = `160px`;
+    div.innerHTML = `
+      <strong>${ev.start}</strong><br>
+      ${ev.title}<br>
+      <small>${ev.unidade || ''}</small><br>
+      <small>${ev.sala || ''}</small>
+    `;
 
-  agendaContent.appendChild(div);
-});
-
+    agendaContent.appendChild(div);
+  });
 }
 
 async function renderWeekView() {
@@ -144,7 +149,12 @@ async function renderWeekView() {
       li.style.marginBottom = '6px';
       li.style.borderRadius = '6px';
       li.style.fontSize = '13px';
-      li.textContent = `${e.start} • ${e.title}`;
+      li.innerHTML = `
+        <strong>${e.start}</strong> • ${e.servico || ''}<br>
+        ${e.title}<br>
+        <small>${e.sala || ''}</small><br>
+        <small>${e.unidade || ''}</small>
+      `;
       col.appendChild(li);
     });
 
@@ -193,7 +203,12 @@ async function renderMonthView() {
         li.style.marginBottom = '6px';
         li.style.borderRadius = '4px';
         li.style.fontSize = '12px';
-        li.textContent = `${e.start} ${e.title}`;
+        li.innerHTML = `
+          <strong>${e.start}</strong> • ${e.servico || ''}<br>
+          ${e.title}<br>
+          <small>${e.sala || ''}</small><br>
+          <small>${e.unidade || ''}</small>
+        `;
         cell.appendChild(li);
       });
     } else {
@@ -204,24 +219,25 @@ async function renderMonthView() {
   agendaContent.appendChild(grid);
 }
 
+
 // 🕹️ Controles de navegação
 btnToday.addEventListener('click', () => {
   currentDate = new Date();
-  renderAgenda();
+  carregarAgendamentos();
 });
 
 btnPrev.addEventListener('click', () => {
   if (viewMode === 'day') currentDate.setDate(currentDate.getDate() - 1);
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() - 7);
   else currentDate.setMonth(currentDate.getMonth() - 1);
-  renderAgenda();
+  carregarAgendamentos();
 });
 
 btnNext.addEventListener('click', () => {
   if (viewMode === 'day') currentDate.setDate(currentDate.getDate() + 1);
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() + 7);
   else currentDate.setMonth(currentDate.getMonth() + 1);
-  renderAgenda();
+  carregarAgendamentos();
 });
 
 viewBtns.forEach(b => {
@@ -229,7 +245,7 @@ viewBtns.forEach(b => {
     viewBtns.forEach(x => x.classList.remove('active'));
     b.classList.add('active');
     viewMode = b.dataset.view;
-    renderAgenda();
+    carregarAgendamentos();
   });
 });
 
@@ -272,7 +288,75 @@ eventForm.addEventListener('submit', async (e) => {
   renderAgenda();
 });
 
+async function carregarAgendamentos() {
+  const agendaDiv = document.getElementById('agendaContent');
+  agendaDiv.innerHTML = '<p>Carregando agendamentos...</p>';
+
+  try {
+    const todosAgendamentos = [];
+
+    // Busca os agendamentos de cada unidade (1 a 4)
+    for (let id = 1; id <= 4; id++) {
+      const resp = await fetch(`http://localhost:3000/api/atendimentos/${id}`);
+      if (!resp.ok) throw new Error(`Erro ao buscar unidade ${id}`);
+      const dados = await resp.json();
+      todosAgendamentos.push(...dados);
+    }
+
+    // Limpa conteúdo anterior
+    agendaDiv.innerHTML = '';
+
+    if (todosAgendamentos.length === 0) {
+      agendaDiv.innerHTML = '<p>Nenhum agendamento encontrado.</p>';
+      return;
+    }
+
+    // Cria os elementos visuais para cada agendamento
+    todosAgendamentos.forEach(ag => {
+      const dataInicio = new Date(ag.inicio_atendimento);
+      const horaInicio = dataInicio.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const dataFormatada = dataInicio.toLocaleDateString('pt-BR');
+
+      const card = document.createElement('div');
+      card.className = 'agendamento-card';
+      card.innerHTML = `
+        <h4>${ag.servico || 'Serviço não informado'}</h4>
+        <p><strong>Cliente:</strong> ${ag.cliente}</p>
+        <p><strong>Colaborador:</strong> ${ag.colaborador}</p>
+        <p><strong>Sala:</strong> ${ag.sala}</p>
+        <p><strong>Unidade:</strong> ${ag.unidade}</p>
+        <p><strong>Data:</strong> ${dataFormatada} às ${horaInicio}</p>
+      `;
+
+      agendaDiv.appendChild(card);
+    });
+
+    // Também converte para salvar localmente, se quiser manter integração com renderAgenda()
+    const eventosConvertidos = todosAgendamentos.map(ag => {
+      const dataISO = new Date(ag.inicio_atendimento).toISOString().slice(0, 10);
+      const hora = new Date(ag.inicio_atendimento).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return {
+        id: ag.id_atendimento || Date.now(),
+        title: `${ag.cliente} – ${ag.colaborador}`,
+        date: dataISO,
+        start: hora,
+        duration: ag.tempo_servico ? ag.tempo_servico / 60 : 1,
+        unidade: ag.unidade,
+        sala: ag.sala
+      };
+    });
+
+    localStorage.setItem("eventos", JSON.stringify(eventosConvertidos));
+    renderAgenda();
+
+  } catch (erro) {
+    console.error("Erro ao carregar agendamentos:", erro);
+    agendaDiv.innerHTML = `<p style="color:red;">Erro ao carregar agendamentos. Verifique o console.</p>`;
+  }
+}
+
 // 🚀 Inicialização
 window.addEventListener('load', () => {
   renderAgenda();
+  carregarAgendamentos();
 });
