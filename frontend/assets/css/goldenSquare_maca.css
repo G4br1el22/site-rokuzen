@@ -246,6 +246,11 @@ main {
   width: 100%;
 }
 
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
+}
 
 @media (max-width: 1200px) {
   .container {
@@ -381,4 +386,28 @@ footer {
   .footer-unidades {
     margin-top: 20px;
   }
+}
+
+.card {
+    width: 180px;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.livre {
+    background-color: #4CAF50;
+}
+
+.ocupada {
+    background-color: #e63946;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }

@@ -13,21 +13,27 @@ const viewBtns = document.querySelectorAll('.view-btn');
 let viewMode = 'day';
 let currentDate = new Date();
 
-const API_URL = "http://localhost:3000/api/atendimentos";
-const ID_UNIDADE = 1; // você pode trocar conforme o gerente logado
+// 🟢 Canal para sincronizar apenas os DADOS entre abas
+const canal = new BroadcastChannel("agenda_data_sync");
 
+canal.onmessage = (e) => {
+  if (e.data.tipo === "atualizarEventos") {
+    renderAgenda(); // só recarrega os dados na outra aba
+  }
+};
+
+// Função auxiliar pra notificar outras abas que os dados mudaram
+function sincronizarDados() {
+  canal.postMessage({ tipo: "atualizarEventos" });
+}
+
+// 🧠 Funções utilitárias
 function formatDateTitle(d) {
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   return d.toLocaleDateString('pt-BR', options);
 }
 
 function zero(n) { return n < 10 ? '0' + n : String(n); }
-
-function calcularDuracao(inicio, fim) {
-  const start = new Date(inicio);
-  const end = new Date(fim);
-  return (end - start) / (1000 * 60 * 60); // duração em horas
-}
 
 function calcularFim(date, start, duracaoHoras) {
   const [h, m] = start.split(":").map(Number);
@@ -37,53 +43,27 @@ function calcularFim(date, start, duracaoHoras) {
   return inicio.toISOString().slice(0, 19);
 }
 
-async function loadEvents() {
-  try {
-    const res = await fetch(`${API_URL}/${ID_UNIDADE}`);
-    if (!res.ok) throw new Error("Erro ao buscar agendamentos do servidor");
-    const data = await res.json();
-
-    // Converte os registros do banco para o formato usado na interface
-    return data.map((ev, i) => ({
-      id: i + 1, // gera um ID temporário
-      title: `${ev.cliente} – ${ev.servico} (${ev.sala})`,
-      date: ev.inicio_atendimento.slice(0, 10),
-      start: ev.inicio_atendimento.slice(11, 16),
-      duration: calcularDuracao(ev.inicio_atendimento, ev.fim_atendimento)
-    }));
-  } catch (err) {
-    console.error("❌ Erro ao carregar eventos:", err);
-    return [];
-  }
+// 🗂️ Armazenamento local (substitui o backend)
+function loadEvents() {
+  const stored = localStorage.getItem("eventos");
+  return stored ? JSON.parse(stored) : [];
 }
 
-async function saveEventToDB(evento) {
-  try {
-    const body = {
-      inicio_atendimento: `${evento.date}T${evento.start}:00`,
-      fim_atendimento: calcularFim(evento.date, evento.start, evento.duration),
-      pagamento: "pendente",
-      id_servico: 1,      // por enquanto fixo; depois podemos ligar ao select "servicos"
-      id_cliente: 1,
-      id_colaborador: 1,
-      id_sala: 1,
-      id_unidade: ID_UNIDADE
-    };
-
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
-
-    if (!res.ok) throw new Error("Erro ao salvar atendimento");
-    console.log("✅ Atendimento salvo no banco com sucesso!");
-  } catch (err) {
-    console.error("❌ Erro ao salvar no banco:", err);
-  }
+function saveEventToLocal(evento) {
+  const eventos = loadEvents();
+  eventos.push(evento);
+  localStorage.setItem("eventos", JSON.stringify(eventos));
+  sincronizarDados();
 }
 
+function clearOldEvents() {
+  const eventos = loadEvents().filter(e => !!e.date);
+  localStorage.setItem("eventos", JSON.stringify(eventos));
+}
+
+// 🗓️ Renderização principal
 async function renderAgenda() {
+  clearOldEvents();
   dateTitle.textContent = formatDateTitle(currentDate);
   dayNumber.textContent = String(currentDate.getDate());
   agendaContent.innerHTML = '';
@@ -93,8 +73,8 @@ async function renderAgenda() {
   return renderDayView();
 }
 
+
 async function renderDayView() {
-  // Cria as linhas de horário
   for (let h = 0; h < 24; h++) {
     const row = document.createElement('div');
     row.className = 'hour-row';
@@ -102,24 +82,32 @@ async function renderDayView() {
     agendaContent.appendChild(row);
   }
 
-  // Busca eventos do backend
-  const events = await loadEvents();
+  const events = loadEvents();
   const iso = currentDate.toISOString().slice(0, 10);
   const eventsToday = events.filter(ev => ev.date === iso);
 
   const rows = agendaContent.querySelectorAll('.hour-row');
   const rowHeight = rows[0] ? rows[0].getBoundingClientRect().height : 52;
 
-  // Renderiza os eventos
-  eventsToday.forEach(ev => {
+  eventsToday.forEach((ev, i) => {
     const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
     const top = (hh + mm / 60) * rowHeight + 8;
-    const height = Math.max(36, (ev.duration || 1) * rowHeight - 8);
+    const height = 80; // altura fixa pra parecer um quadradinho
+    const left = 100 + (i * 90); // desloca um pouco pro lado (evita sobreposição)
+
     const div = document.createElement('div');
     div.className = 'event';
     div.style.top = `${top}px`;
+    div.style.left = `${left}px`;
     div.style.height = `${height}px`;
-    div.textContent = ev.title;
+    div.style.width = `160px`;
+    div.innerHTML = `
+      <strong>${ev.start}</strong><br>
+      ${ev.title}<br>
+      <small>${ev.unidade || ''}</small><br>
+      <small>${ev.sala || ''}</small>
+    `;
+
     agendaContent.appendChild(div);
   });
 }
@@ -135,7 +123,7 @@ async function renderWeekView() {
   const diff = (day === 0) ? -6 : (1 - day);
   start.setDate(start.getDate() + diff);
 
-  const events = await loadEvents();
+  const events = loadEvents();
 
   for (let i = 0; i < 7; i++) {
     const col = document.createElement('div');
@@ -161,7 +149,12 @@ async function renderWeekView() {
       li.style.marginBottom = '6px';
       li.style.borderRadius = '6px';
       li.style.fontSize = '13px';
-      li.textContent = `${e.start} • ${e.title}`;
+      li.innerHTML = `
+        <strong>${e.start}</strong> • ${e.servico || ''}<br>
+        ${e.title}<br>
+        <small>${e.sala || ''}</small><br>
+        <small>${e.unidade || ''}</small>
+      `;
       col.appendChild(li);
     });
 
@@ -185,7 +178,7 @@ async function renderMonthView() {
   const startDay = first.getDay() === 0 ? 6 : first.getDay() - 1;
   const total = last.getDate();
 
-  const events = await loadEvents();
+  const events = loadEvents();
 
   for (let i = 0; i < 42; i++) {
     const cell = document.createElement('div');
@@ -210,7 +203,12 @@ async function renderMonthView() {
         li.style.marginBottom = '6px';
         li.style.borderRadius = '4px';
         li.style.fontSize = '12px';
-        li.textContent = `${e.start} ${e.title}`;
+        li.innerHTML = `
+          <strong>${e.start}</strong> • ${e.servico || ''}<br>
+          ${e.title}<br>
+          <small>${e.sala || ''}</small><br>
+          <small>${e.unidade || ''}</small>
+        `;
         cell.appendChild(li);
       });
     } else {
@@ -221,34 +219,37 @@ async function renderMonthView() {
   agendaContent.appendChild(grid);
 }
 
+
+// 🕹️ Controles de navegação
 btnToday.addEventListener('click', () => {
   currentDate = new Date();
-  renderAgenda();
+  carregarAgendamentos();
 });
 
 btnPrev.addEventListener('click', () => {
   if (viewMode === 'day') currentDate.setDate(currentDate.getDate() - 1);
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() - 7);
   else currentDate.setMonth(currentDate.getMonth() - 1);
-  renderAgenda();
+  carregarAgendamentos();
 });
 
 btnNext.addEventListener('click', () => {
   if (viewMode === 'day') currentDate.setDate(currentDate.getDate() + 1);
   else if (viewMode === 'week') currentDate.setDate(currentDate.getDate() + 7);
   else currentDate.setMonth(currentDate.getMonth() + 1);
-  renderAgenda();
+  carregarAgendamentos();
 });
 
 viewBtns.forEach(b => {
-  b.addEventListener('click', (ev) => {
+  b.addEventListener('click', () => {
     viewBtns.forEach(x => x.classList.remove('active'));
     b.classList.add('active');
     viewMode = b.dataset.view;
-    renderAgenda();
+    carregarAgendamentos();
   });
 });
 
+// 📝 Modal de novo evento
 btnNew.addEventListener('click', () => {
   const dt = new Date(currentDate);
   const dateInput = eventForm.querySelector('[name="date"]');
@@ -280,13 +281,82 @@ eventForm.addEventListener('submit', async (e) => {
     duration: parseFloat(form.get('duration')) || 1
   };
 
-  await saveEventToDB(ev); // agora salva no banco
+  saveEventToLocal(ev);
   modal.classList.add('hidden');
   modal.setAttribute('aria-hidden', 'true');
   eventForm.reset();
   renderAgenda();
 });
 
+async function carregarAgendamentos() {
+  const agendaDiv = document.getElementById('agendaContent');
+  agendaDiv.innerHTML = '<p>Carregando agendamentos...</p>';
+
+  try {
+    const todosAgendamentos = [];
+
+    // Busca os agendamentos de cada unidade (1 a 4)
+    for (let id = 1; id <= 4; id++) {
+      const resp = await fetch(`http://localhost:3000/api/atendimentos/${id}`);
+      if (!resp.ok) throw new Error(`Erro ao buscar unidade ${id}`);
+      const dados = await resp.json();
+      todosAgendamentos.push(...dados);
+    }
+
+    // Limpa conteúdo anterior
+    agendaDiv.innerHTML = '';
+
+    if (todosAgendamentos.length === 0) {
+      agendaDiv.innerHTML = '<p>Nenhum agendamento encontrado.</p>';
+      return;
+    }
+
+    // Cria os elementos visuais para cada agendamento
+    todosAgendamentos.forEach(ag => {
+      const dataInicio = new Date(ag.inicio_atendimento);
+      const horaInicio = dataInicio.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const dataFormatada = dataInicio.toLocaleDateString('pt-BR');
+
+      const card = document.createElement('div');
+      card.className = 'agendamento-card';
+      card.innerHTML = `
+        <h4>${ag.servico || 'Serviço não informado'}</h4>
+        <p><strong>Cliente:</strong> ${ag.cliente}</p>
+        <p><strong>Colaborador:</strong> ${ag.colaborador}</p>
+        <p><strong>Sala:</strong> ${ag.sala}</p>
+        <p><strong>Unidade:</strong> ${ag.unidade}</p>
+        <p><strong>Data:</strong> ${dataFormatada} às ${horaInicio}</p>
+      `;
+
+      agendaDiv.appendChild(card);
+    });
+
+    // Também converte para salvar localmente, se quiser manter integração com renderAgenda()
+    const eventosConvertidos = todosAgendamentos.map(ag => {
+      const dataISO = new Date(ag.inicio_atendimento).toISOString().slice(0, 10);
+      const hora = new Date(ag.inicio_atendimento).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return {
+        id: ag.id_atendimento || Date.now(),
+        title: `${ag.cliente} – ${ag.colaborador}`,
+        date: dataISO,
+        start: hora,
+        duration: ag.tempo_servico ? ag.tempo_servico / 60 : 1,
+        unidade: ag.unidade,
+        sala: ag.sala
+      };
+    });
+
+    localStorage.setItem("eventos", JSON.stringify(eventosConvertidos));
+    renderAgenda();
+
+  } catch (erro) {
+    console.error("Erro ao carregar agendamentos:", erro);
+    agendaDiv.innerHTML = `<p style="color:red;">Erro ao carregar agendamentos. Verifique o console.</p>`;
+  }
+}
+
+// 🚀 Inicialização
 window.addEventListener('load', () => {
   renderAgenda();
+  carregarAgendamentos();
 });

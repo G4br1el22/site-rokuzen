@@ -2,57 +2,91 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfis dos Usuários</title>
-  <link rel="stylesheet" href="/frontend/assets/css/perfis.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@300;400;600&display=swap"
-    rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Gerente - Administração</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/frontend/assets/css/perfis.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo" />
+
+    <div class="container">
+        <header class="topbar">
+            <div class="brand">
+                <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
+            </div>
+
+            <nav class="menu">
+                <a href="pontos.html" class="menu-item">Pontos</a>
+                <a href="perfis.html" class="menu-item active">Perfil dos usuários</a>
+                <a href="/frontend/telas_gerente/agendamento_gerente.html" class="menu-item">Alterar agendamento</a>
+                <a href="cadastrar_cliente.html" class="menu-item">Cadastrar Clientes</a>
+
+                <div class="user-menu">
+                    <div class="avatar" id="avatar" title="Perfil">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+                            <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+                            <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+                        </svg>
+                    </div>
+
+                    <div class="dropdown" id="dropdown">
+                        <button id="editarPerfil">Editar Perfil</button>
+                        <button id="logout">Logout</button>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+
+        <main class="admin-layout">
+            <section class="lista-usuarios">
+                <h2>Todos os Usuários</h2>
+                <input type="text" id="searchInput" placeholder="Buscar por nome ou cargo..." />
+                
+                <ul id="usuariosLista"></ul>
+            </section>
+
+            <section class="editor-usuario">
+                <h2>Editar Usuário</h2>
+                <form id="editarForm">
+
+                    <label>Foto:</label>
+                    <div class="foto-container">
+                        <img id="previewFoto" class="preview-foto" src="" alt="Preview" />
+
+                        <div class="foto-acoes">
+                            <label class="carregar" for="uploadFotoInput">Carregar nova foto</label>
+                            <input type="file" id="uploadFotoInput" hidden accept="image/*"> <button type="button" class="remover" id="removerFotoBtn">Remover foto</button>
+                        </div>
+                        </div>
+
+                    <label>Nome:</label>
+                    <input type="text" id="nomeInput" required />
+
+                    <label>Cargo:</label>
+                    <select id="cargoInput">
+                        <option value="Funcionário">Funcionário</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+
+                    <button class="salvar" type="submit">Salvar Alterações</button>
+                </form>
+            </section>
+        </main>
+
     </div>
 
-    <nav class="menu">
-      <a class="menu-item" href="/frontend/telas_gerente/pontos.html">Pontos</a>
-      <a class="menu-item active" href="/frontend/telas_gerente/perfis.html">Perfil dos Usuários</a>
-      <a class="menu-item" href="/frontend/telas_gerente/agendamento_gerente.html">Alterar agendamento</a>
-      <a class="menu-item" href="/frontend/telas_gerente/cadastrar_cliente.html">Cadastro do Cliente</a>
+    <script src="/frontend/assets/js/perfis.js"></script>
+</body>
 
-      <div class="user-menu">
-        <div class="avatar" id="avatar" title="Perfil">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
-            <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
-            <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
-          </svg>
-        </div>
-
-        <div class="dropdown" id="dropdown">
-          <button id="editarPerfil">Editar Perfil</button>
-          <button id="logout">Logout</button>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <div class="search-bar">
-      <input type="text" id="search" placeholder="Pesquisar funcionários...">
-    </div>
-
-    <div id="user-list">
-      <div class="user" data-id="1">Ana Banana</div>
-      <div class="user" data-id="2">João Silva</div>
-      <div class="user" data-id="3">Luiza Souza</div>
-      <div class="user" data-id="4">Marcos Pereira</div>
-    </div>
-  </main>
-  <div vw class="enabled">
+<div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>

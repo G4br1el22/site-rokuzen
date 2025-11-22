@@ -18,3 +18,79 @@ document.getElementById('logout').addEventListener('click', () => {
     alert('Você saiu da conta.');
     window.location.href = '/frontend/telas/login/login.html';
 });
+
+function getPageInfo() {
+    const path = window.location.pathname;
+
+    // UNIDADE
+    let unidadeId;
+    if (path.includes("goldenSquare")) unidadeId = 2;
+    if (path.includes("grandPlaza")) unidadeId = 1;
+    if (path.includes("mooca")) unidadeId = 3;
+    if (path.includes("westPlaza")) unidadeId = 4;
+
+    // TIPO DE SALA
+    let tipoSala;
+    if (path.includes("maca")) tipoSala = "Maca";
+    if (path.includes("quick")) tipoSala = "Quick Massage";
+    if (path.includes("reflexo")) tipoSala = "Poltrona Reflexologia";
+
+    return { unidadeId, tipoSala };
+}
+
+function getCards() {
+    return [...document.querySelectorAll(".card")].map(card => {
+        const texto = card.querySelector("h2").textContent; 
+        const numero = parseInt(texto.replace("SALA", "").trim());
+        return { card, numero };
+    });
+}
+
+async function atualizarSalas() {
+    const { unidadeId, tipoSala } = getPageInfo();
+    const cards = getCards();
+
+    try {
+        const resSalas = await fetch(`http://localhost:3000/salas/${unidadeId}`);
+        const salas = await resSalas.json();
+
+        const resAg = await fetch(`http://localhost:3000/salas/agendamentos/${unidadeId}`);
+        const agendamentos = await resAg.json();
+
+        // Mapeamento entre texto do HTML e nome do banco
+        const mapQuick = {
+            1: "Quick Massage 1",
+            2: "Quick Massage 2",
+            3: "Quick Massage 3"
+        };
+
+        cards.forEach(c => {
+            // texto exibido dentro do card ("SALA 1", "SALA 2", ...)
+            const numeroSala = c.numero;
+
+            const nomeBanco = mapQuick[numeroSala];
+            if (!nomeBanco) return;
+
+            // localizar sala correta no banco
+            const salaDB = salas.find(s => s.tipo_sala === nomeBanco);
+            if (!salaDB) return;
+
+            // verificar se está ocupada
+            const ocupada = agendamentos.some(a => a.id_sala === salaDB.id_sala);
+
+            if (ocupada) {
+                c.card.style.border = "5px solid red";
+                c.card.style.filter = "grayscale(50%)";
+            } else {
+                c.card.style.border = "5px solid #4CAF50";
+                c.card.style.filter = "none";
+            }
+        });
+
+    } catch (erro) {
+        console.error("Erro ao atualizar salas:", erro);
+    }
+}
+
+atualizarSalas();
+setInterval(atualizarSalas, 5000);

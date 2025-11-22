@@ -274,20 +274,13 @@ body {
 
 .event {
   position: absolute;
-  left: 90px;
-  right: 16px;
-  height: 42px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, #e9f7c7, #d8ee9a);
-  color: var(--green-dark);
-  display: flex;
-  align-items: center;
-  padding: 8px 14px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-  font-weight: 600;
+  background-color: #e6f5c2;
+  border-radius: 6px;
+  padding: 4px;
+  font-size: 13px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 80px; /* largura fixa, para ficarem como bloquinhos */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .modal {
@@ -346,6 +339,12 @@ body {
 .pill.primary {
   background: var(--green-mid);
   color: #fff;
+}
+
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
 }
 
 @media (max-width:900px) {

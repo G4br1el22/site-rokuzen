@@ -2,9 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const Colaboradores = require('./models/colaboradores');
 const atendimentosRoutes = require('./routes/atendimentos');
+const salasRoutes = require('./routes/salas')
 
 const app = express();
-app.use(cors()); // permite que o front acesse o back
+app.use(cors());
 app.use(express.json());
 
 // Rota para buscar escalas por unidade
@@ -29,6 +30,8 @@ app.get('/escala-massagistas', async (req, res) => {
 });
 
 app.use('/api/atendimentos', atendimentosRoutes);
+
+app.use('/salas', salasRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));

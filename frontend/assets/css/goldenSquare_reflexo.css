@@ -246,6 +246,12 @@ main {
   width: 100%;
 }
 
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
+}
+
 
 @media (max-width: 1200px) {
   .container {
@@ -369,6 +375,12 @@ footer {
   margin-top: 20px;
   font-size: 14px;
   opacity: 0.8;
+}
+
+.full-width {
+  margin-left: -36px;
+  margin-right: -36px;
+  width: calc(100% + 72px);
 }
 
 @media (max-width: 768px) {
