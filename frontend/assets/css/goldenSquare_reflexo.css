@@ -133,6 +133,7 @@ main {
   font-size: clamp(36px, 7.5vw, 70px);
   line-height: 0.9;
   color: #48652b;
+  white-space: nowrap;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
 }
 

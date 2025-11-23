@@ -125,12 +125,13 @@ main {
 .texto {
   flex: 1;
   padding: 40px;
-  margin-right: 5px;
+  margin-right: 20px;
 }
 
 .texto h1 {
   font-family: 'Bayon', sans-serif;
-  font-size: clamp(36px, 7.5vw, 75px);
+  font-size: clamp(20px, 18vw, 70px);
+  white-space: nowrap;
   line-height: 0.9;
   color: #48652b;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
