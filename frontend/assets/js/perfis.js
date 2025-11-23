@@ -8,7 +8,7 @@ let usuarios = [
 ];
 
 let usuarioSelecionado = null;
-const defaultAvatarSrc = ""; // Caminho de avatar padrão (ex: "/imagens/avatar.png")
+const defaultAvatarSrc = ""; 
 
 const lista = document.getElementById("usuariosLista");
 const nomeInput = document.getElementById("nomeInput");
@@ -16,11 +16,11 @@ const cargoInput = document.getElementById("cargoInput");
 const preview = document.getElementById("previewFoto");
 const searchInput = document.getElementById("searchInput");
 
-// Novos elementos de foto
+
 const uploadFotoInput = document.getElementById("uploadFotoInput");
 const removerFotoBtn = document.getElementById("removerFotoBtn");
 
-// ---------- Funções ----------
+
 
 function renderLista(usuariosFiltrados = usuarios) {
   lista.innerHTML = "";
@@ -62,11 +62,11 @@ function selecionarUsuario(id) {
   cargoInput.value = usuarioSelecionado.cargo;
   preview.src = usuarioSelecionado.foto || defaultAvatarSrc;
 
-  // Reseta o input de arquivo
+
   uploadFotoInput.value = "";
 }
 
-// ---------- Eventos de foto ----------
+
 
 uploadFotoInput.addEventListener("change", e => {
   const file = e.target.files[0];
@@ -88,7 +88,7 @@ removerFotoBtn.addEventListener("click", () => {
   alert(`A foto de ${usuarioSelecionado.nome} será removida ao salvar.`);
 });
 
-// ---------- Dropdown de avatar ----------
+
 
 const avatar = document.getElementById("avatar");
 const dropdown = document.getElementById("dropdown");
@@ -103,7 +103,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ---------- Salvar ----------
+
 
 const form = document.getElementById("editarForm");
 form.addEventListener("submit", e => {
@@ -120,5 +120,5 @@ form.addEventListener("submit", e => {
   alert(`Alterações para ${usuarioSelecionado.nome} salvas!`);
 });
 
-// ---------- Renderização inicial ----------
+
 renderLista();

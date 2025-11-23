@@ -1,5 +1,4 @@
 :root {
-  /* Cores baseadas no exemplo */
   --background: #f8f9ef;
   --text-primary: #4c5f32;
   --text-secondary: #526d36;
@@ -39,7 +38,7 @@ body {
   flex-direction: column;
 }
 
-/* --- Topbar/Navbar Styles --- */
+
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -121,7 +120,7 @@ body {
   display: block;
 }
 
-/* --- Admin Layout (Main Content) Styles --- */
+
 .admin-layout {
   display: flex;
   flex-direction: row; 
@@ -145,7 +144,7 @@ h2 {
   box-shadow: 0 4px 10px rgba(0,0,0,.1);
 }
 
-/* Estilo para a Barra de Pesquisa */
+
 #searchInput {
   width: 100%;
   padding: 10px;
@@ -196,7 +195,6 @@ label {
   color: var(--text-primary);
 }
 
-/* Estilo geral para inputs/selects */
 input:not([type="file"]):not(#searchInput), 
 select {
   width: 100%;
@@ -207,9 +205,6 @@ select {
   font-family: 'Albert Sans', sans-serif;
   color: var(--text-primary);
 }
-
-
-/* --- Estilos para a Ação de Foto --- */
 
 .foto-container {
   display: flex;
@@ -234,17 +229,17 @@ select {
   gap: 15px;
   font-size: 14px;
   margin-bottom: 10px;
-  /* CHAVE PARA O ALINHAMENTO VERTICAL */
+
   align-items: center; 
 }
 
 .carregar,
 .remover {
-  /* REMOÇÃO DE BORDAS E FUNDOS */
+
   background: none; 
   border: none;
   
-  /* PADDING E MARGIN PADRONIZADOS PARA ALINHAMENTO */
+
   padding: 5px 10px;
   margin: 0; 
   
@@ -291,28 +286,6 @@ select {
 }
 .salvar:hover { opacity: 0.8; }
 
-<<<<<<< HEAD
-/* Media Queries para responsividade */
-=======
-.footer-unidades p {
-  margin-bottom: 5px;
-  font-size: 15px;
-}
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-.full-width {
-  margin-left: -36px;
-  margin-right: -36px;
-  width: calc(100% + 72px);
-}
-
->>>>>>> 8873f998131a78eb33bbc3066c6e4911a0588d90
 @media (max-width: 768px) {
   .admin-layout {
       flex-direction: column; 
