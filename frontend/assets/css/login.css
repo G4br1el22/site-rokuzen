@@ -11,26 +11,26 @@ html {
   height: 100%;
 }
 
-/* Container principal com dois lados */
+
 .container {
   display: flex;
   height: 100vh;
 }
 
-/* Container principal */
+
 .container {
   display: flex;
   height: 100vh;
   background-color: #4F6326;
 }
 
-/* Lado esquerdo */
+
 .left {
   flex: 1;
   background-color: transparent;
 }
 
-/* Lado direito */
+
 .right {
   flex: 1;
   background-color: #FAFAEF;
@@ -42,7 +42,7 @@ html {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Caixa de login */
+
 .login-box {
   width: 100%;
   max-width: 400px;
@@ -50,13 +50,13 @@ html {
   text-align: center;
 }
 
-/* Logo */
+
 .logo {
   width: 150px;
   margin-bottom: 2rem;
 }
 
-/* Formulário */
+
 form {
   display: flex;
   flex-direction: column;

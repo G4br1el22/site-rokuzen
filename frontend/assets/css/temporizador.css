@@ -113,7 +113,7 @@ header {
   border-radius: 50%;
 }
 
-/* Conteúdo central */
+
 main {
   display: flex;
   justify-content: center;
@@ -154,7 +154,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Notificação */
+
 #notification {
   position: fixed;
   bottom: 30px;

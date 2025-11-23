@@ -23,7 +23,6 @@ window.onload = function () {
   const params = new URLSearchParams(window.location.search);
   const horario = params.get("horario");
 
-  // --- Página relatorio.html ---
   if (horario && document.getElementById("texto")) {
     const salvo = localStorage.getItem(`relatorio_${horario}`);
     if (salvo) {
@@ -39,12 +38,10 @@ window.onload = function () {
     document.getElementById("hora").setAttribute("step", "60");
   }
 
-  // --- Página relatorios.html ---
   if (document.querySelector(".cards-grid")) {
     carregarRelatorios();
   }
 
-  // --- Modal adicionar ---
   const btnAdicionar = document.getElementById("btnAdicionar");
   const modal = document.getElementById("modalNovoRelatorio");
   const btnCancelar = document.getElementById("cancelarNovo");
@@ -84,7 +81,6 @@ window.onload = function () {
   }
 };
 
-// --- Função para atualizar a grade ---
 function carregarRelatorios() {
   const grid = document.getElementById("cardsGrid");
   grid.innerHTML = "";

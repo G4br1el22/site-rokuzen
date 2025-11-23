@@ -133,18 +133,12 @@ body {
   gap: 40px;
 }
 
-/* --- CORREÇÃO DA TABELA (Início) --- */
 
-/* MUDANÇA: Este é o novo container que adicionamos no HTML */
 .table-wrapper {
   border: 1px solid #ccc;
-  /* Borda sutil como no código anterior */
   border-radius: 15px;
-  /* Arredondamento suave, como no código anterior */
   overflow: hidden;
-  /* Essencial para o border-radius funcionar na tabela */
   width: 50%;
-  /* Você pode ajustar isso, mas impede a tabela de ser "pequena" */
   min-width: 400px;
 }
 
@@ -152,7 +146,6 @@ table {
   border-collapse: collapse;
   font-size: 16px;
   width: 100%;
-  /* MUDANÇA: Faz a tabela preencher o wrapper */
 }
 
 td {
@@ -160,7 +153,6 @@ td {
   padding: 15px 40px;
 }
 
-/* MUDANÇA: Remove a borda da última linha, como no código anterior */
 tbody tr:last-child td {
   border-bottom: none;
 }
@@ -168,25 +160,16 @@ tbody tr:last-child td {
 .name {
   background-color: #7b9364;
   color: white;
-  /* MUDANÇA: Removido 'width' para a coluna se ajustar */
-  /* MUDANÇA: Removido 'border-top-left-radius' */
-  /* MUDANÇA: Removido 'border-bottom-left-radius' */
 }
 
 .points {
   background-color: #d9d9d9;
   width: 100px;
   text-align: center;
-  /* MUDANÇA: Removido 'border-top-right-radius' */
-  /* MUDANÇA: Removido 'border-bottom-right-radius' */
 }
 
-/* --- CORREÇÃO DA TABELA (Fim) --- */
 
 .selected {
-  /* MUDANÇA: Mudei de 'font-weight' para 'outline' 
-     para ficar mais parecido com o código anterior 
-     e não fazer a tabela "pular" */
   outline: 2px solid #3c4d22;
   outline-offset: -2px;
 }
@@ -216,7 +199,6 @@ tbody tr:last-child td {
   background-color: #3c4d22;
 }
 
-/* --- CORREÇÃO DO MODAL (Início) --- */
 .modal {
   position: fixed;
   top: 0;
@@ -238,20 +220,15 @@ tbody tr:last-child td {
   padding: 20px 30px;
   border-radius: 10px;
   text-align: center;
-
-  /* MUDANÇA: Adicionamos uma largura fixa e uma sombra
-     para o modal não ocupar a tela toda. */
   width: 320px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* --- CORREÇÃO DO MODAL (Fim) --- */
 
 .modal-content input {
   padding: 8px;
   width: 100%;
   box-sizing: border-box;
-  /* Adicionado para o padding não quebrar a largura */
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -345,3 +322,4 @@ footer {
     margin-top: 20px;
   }
 }
+

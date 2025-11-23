@@ -9,7 +9,7 @@ body {
   min-height: 100vh;
 }
 
-/* ======== CABEÇALHO ======== */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -131,7 +131,7 @@ header {
   object-fit: cover;
 }
 
-/* ======== CONTEÚDO CENTRAL ======== */
+
 main {
   flex-grow: 1;
   display: flex;

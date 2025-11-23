@@ -5,7 +5,7 @@ function horaParaNumero(horaStr) {
   return h + (m / 60);
 }
 
-// Função para mostrar a escala do terapeuta na tabela
+
 function mostrarEscala(terapeuta) {
   console.log('Mostrando escala de:', terapeuta.nome_colaborador);
 
@@ -30,7 +30,6 @@ function mostrarEscala(terapeuta) {
   }
 }
 
-// Função para carregar terapeutas e escalas
 async function carregarEscalas() {
   console.log('carregarEscalas rodou');
 
@@ -84,5 +83,5 @@ async function carregarEscalas() {
   }
 }
 
-// Chama a função ao carregar
+
 carregarEscalas();

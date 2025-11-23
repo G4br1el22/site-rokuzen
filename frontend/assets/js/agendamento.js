@@ -13,21 +13,21 @@ const viewBtns = document.querySelectorAll('.view-btn');
 let viewMode = 'day';
 let currentDate = new Date();
 
-// 🟢 Canal para sincronizar apenas os DADOS entre abas
+
 const canal = new BroadcastChannel("agenda_data_sync");
 
 canal.onmessage = (e) => {
   if (e.data.tipo === "atualizarEventos") {
-    renderAgenda(); // só recarrega os dados na outra aba
+    renderAgenda(); 
   }
 };
 
-// Função auxiliar pra notificar outras abas que os dados mudaram
+
 function sincronizarDados() {
   canal.postMessage({ tipo: "atualizarEventos" });
 }
 
-// 🧠 Funções utilitárias
+
 function formatDateTitle(d) {
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   return d.toLocaleDateString('pt-BR', options);
@@ -43,7 +43,7 @@ function calcularFim(date, start, duracaoHoras) {
   return inicio.toISOString().slice(0, 19);
 }
 
-// 🗂️ Armazenamento local (substitui o backend)
+
 function loadEvents() {
   const stored = localStorage.getItem("eventos");
   return stored ? JSON.parse(stored) : [];
@@ -61,7 +61,7 @@ function clearOldEvents() {
   localStorage.setItem("eventos", JSON.stringify(eventos));
 }
 
-// 🗓️ Renderização principal
+
 async function renderAgenda() {
   clearOldEvents();
   dateTitle.textContent = formatDateTitle(currentDate);
@@ -92,8 +92,8 @@ async function renderDayView() {
   eventsToday.forEach((ev, i) => {
     const [hh, mm] = ev.start.split(':').map(n => parseInt(n, 10));
     const top = (hh + mm / 60) * rowHeight + 8;
-    const height = 80; // altura fixa pra parecer um quadradinho
-    const left = 100 + (i * 90); // desloca um pouco pro lado (evita sobreposição)
+    const height = 80; 
+    const left = 100 + (i * 90); 
 
     const div = document.createElement('div');
     div.className = 'event';
@@ -220,7 +220,7 @@ async function renderMonthView() {
 }
 
 
-// 🕹️ Controles de navegação
+
 btnToday.addEventListener('click', () => {
   currentDate = new Date();
   carregarAgendamentos();
@@ -249,7 +249,7 @@ viewBtns.forEach(b => {
   });
 });
 
-// 📝 Modal de novo evento
+
 btnNew.addEventListener('click', () => {
   const dt = new Date(currentDate);
   const dateInput = eventForm.querySelector('[name="date"]');
@@ -295,7 +295,7 @@ async function carregarAgendamentos() {
   try {
     const todosAgendamentos = [];
 
-    // Busca os agendamentos de cada unidade (1 a 4)
+    
     for (let id = 1; id <= 4; id++) {
       const resp = await fetch(`http://localhost:3000/api/atendimentos/${id}`);
       if (!resp.ok) throw new Error(`Erro ao buscar unidade ${id}`);
@@ -303,7 +303,7 @@ async function carregarAgendamentos() {
       todosAgendamentos.push(...dados);
     }
 
-    // Limpa conteúdo anterior
+    
     agendaDiv.innerHTML = '';
 
     if (todosAgendamentos.length === 0) {
@@ -311,7 +311,7 @@ async function carregarAgendamentos() {
       return;
     }
 
-    // Cria os elementos visuais para cada agendamento
+    
     todosAgendamentos.forEach(ag => {
       const dataInicio = new Date(ag.inicio_atendimento);
       const horaInicio = dataInicio.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -331,7 +331,7 @@ async function carregarAgendamentos() {
       agendaDiv.appendChild(card);
     });
 
-    // Também converte para salvar localmente, se quiser manter integração com renderAgenda()
+   
     const eventosConvertidos = todosAgendamentos.map(ag => {
       const dataISO = new Date(ag.inicio_atendimento).toISOString().slice(0, 10);
       const hora = new Date(ag.inicio_atendimento).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -355,7 +355,7 @@ async function carregarAgendamentos() {
   }
 }
 
-// 🚀 Inicialização
+
 window.addEventListener('load', () => {
   renderAgenda();
   carregarAgendamentos();

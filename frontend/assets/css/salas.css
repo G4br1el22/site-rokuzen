@@ -1,7 +1,4 @@
-/* Menu de navegação */
 
-
-/* Importação e reset */
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +11,7 @@ body {
   color: #4c5f32;
 }
 
-/* Container principal */
+
 .container {
   width: 100%;
   min-height: 100vh;
@@ -25,7 +22,7 @@ body {
   justify-content: space-between;
 }
 
-/* Cabeçalho */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -90,7 +87,7 @@ header {
   display: block;
 }
 
-/* Conteúdo */
+
 main {
   display: flex;
   align-items: flex-start;
@@ -99,7 +96,7 @@ main {
   gap: 60px;
 }
 
-/* Cards */
+
 .cards {
   display: flex;
   gap: 25px;
@@ -223,22 +220,18 @@ main {
 
 .livre {
   background-color: #4CAF50;
-  /* Verde */
 }
 
 .ocupado {
   background-color: #F44336;
-  /* Vermelho */
 }
 
 .intervalo {
   background-color: #FF9800;
-  /* Laranja */
 }
 
 .manutencao {
   background-color: #9E9E9E;
-  /* Cinza */
 }
 
 footer {

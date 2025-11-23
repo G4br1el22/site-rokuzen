@@ -23,11 +23,8 @@ const fakeDatabase = {
   }
 };
 
-// 2. Espera todo o HTML carregar antes de rodar o script
 document.addEventListener('DOMContentLoaded', () => {
 
-
-  
   const nameInput = document.getElementById('nameInput');
   const roleInput = document.getElementById('roleInput');
   const profilePic = document.getElementById('profilePic');
@@ -37,17 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const userId = params.get('id');
 
-  // 5. Busca os dados do usuário no "banco de dados"
+  
   const userData = fakeDatabase[userId];
 
-  // 6. Preenche a página com os dados
+  
   if (userData) {
     nameInput.value = userData.name;
     roleInput.value = userData.role;
     profilePic.src = userData.photo;
     headerIcon.src = userData.photo;
   } else {
-    // Caso o ID não exista ou seja inválido
     nameInput.value = "Usuário não encontrado";
     roleInput.value = "Cargo desconhecido";
   }
@@ -71,14 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
       inputs.forEach(i => i.disabled = true);
       photoInput.disabled = true;
       
-      // aqui no futuro entra o envio dos dados atualizados pro backend
+   
       alert("Alterações salvas (simulação)");
       
     
     }
   });
 
-  // Alterar foto de perfil
   photoInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -86,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.onload = (event) => {
         const newPhotoURL = event.target.result;
         profilePic.src = newPhotoURL;
-        headerIcon.src = newPhotoURL; // Atualiza o ícone do header também
+        headerIcon.src = newPhotoURL; 
       };
       reader.readAsDataURL(file);
     }

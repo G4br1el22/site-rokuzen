@@ -1,4 +1,12 @@
-const names = document.querySelectorAll('.name');
+
+let usuarios = [
+  { id: 1, nome: "Maria Silva", cargo: "Funcionário", foto: "", pontos: 0 },
+  { id: 2, nome: "João Pedro", cargo: "Funcionário", foto: "", pontos: 0 },
+  { id: 3, nome: "Ana Santos", cargo: "Funcionário", foto: "", pontos: 0 },
+  { id: 4, nome: "Carlos Oliveira", cargo: "Gerente", foto: "", pontos: 0 },
+];
+
+const tbody = document.querySelector("tbody");
 const addBtn = document.getElementById('addBtn');
 const modal = document.getElementById('modal');
 const cancelBtn = document.getElementById('cancelBtn');
@@ -6,56 +14,69 @@ const confirmBtn = document.getElementById('confirmBtn');
 const pointsInput = document.getElementById('pointsInput');
 const searchInput = document.querySelector('.search');
 
-let selectedRow = null;
+let selectedUser = null;
 
-// Selecionar trabalhador
-names.forEach(name => {
-  name.addEventListener('click', () => {
-    names.forEach(n => n.classList.remove('selected'));
-    name.classList.add('selected');
-    selectedRow = name.parentElement;
+
+function renderTabela(lista = usuarios) {
+  tbody.innerHTML = "";
+
+  lista.forEach(user => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="name">${user.nome}</td>
+      <td class="points">${user.pontos}</td>
+    `;
+
+    tr.querySelector(".name").addEventListener("click", () => {
+      document.querySelectorAll(".name").forEach(n => n.classList.remove("selected"));
+      tr.querySelector(".name").classList.add("selected");
+      selectedUser = user;
+    });
+
+    tbody.appendChild(tr);
   });
-});
+}
+
+renderTabela();
 
 addBtn.addEventListener('click', () => {
-  if (!selectedRow) {
+  if (!selectedUser) {
     alert('Selecione um trabalhador primeiro!');
     return;
   }
   modal.classList.remove('hidden');
 });
 
-// Cancelar
+
 cancelBtn.addEventListener('click', () => {
   modal.classList.add('hidden');
   pointsInput.value = '';
 });
 
-// Confirmar adição de pontos
+
 confirmBtn.addEventListener('click', () => {
-  const value = parseInt(pointsInput.value);
-  if (isNaN(value) || value < 0) {
+  const valor = parseInt(pointsInput.value);
+
+  if (isNaN(valor) || valor < 0) {
     alert('Digite um número válido!');
     return;
   }
-  const pointsCell = selectedRow.querySelector('.points');
-  const currentPoints = parseInt(pointsCell.textContent || 0);
-  pointsCell.textContent = currentPoints + value;
+
+  selectedUser.pontos += valor;
+
+  renderTabela();
   modal.classList.add('hidden');
   pointsInput.value = '';
 });
 
-//  Pesquisa funcional (case-insensitive)
-searchInput.addEventListener('input', () => {
-  const filter = searchInput.value.toLowerCase();
 
-  document.querySelectorAll('tbody tr').forEach(row => {
-    const nameCell = row.querySelector('.name');
-    const nameText = nameCell.textContent.toLowerCase();
-    if (nameText.includes(filter)) {
-      row.style.display = '';
-    } else {
-      row.style.display = 'none';
-    }
-  });
+
+searchInput.addEventListener('input', () => {
+  const termo = searchInput.value.toLowerCase();
+
+  const filtrados = usuarios.filter(user =>
+    user.nome.toLowerCase().includes(termo)
+  );
+
+  renderTabela(filtrados);
 });

@@ -22,14 +22,14 @@ document.getElementById('logout').addEventListener('click', () => {
 function getPageInfo() {
     const path = window.location.pathname;
 
-    // UNIDADE
+    
     let unidadeId;
     if (path.includes("goldenSquare")) unidadeId = 2;
     if (path.includes("grandPlaza")) unidadeId = 1;
     if (path.includes("mooca")) unidadeId = 3;
     if (path.includes("westPlaza")) unidadeId = 4;
 
-    // TIPO DE SALA
+    
     let tipoSala;
     if (path.includes("maca")) tipoSala = "Maca";
     if (path.includes("quick")) tipoSala = "Quick Massage";
@@ -57,7 +57,7 @@ async function atualizarSalas() {
         const resAg = await fetch(`http://localhost:3000/salas/agendamentos/${unidadeId}`);
         const agendamentos = await resAg.json();
 
-        // Mapeamento entre texto do HTML e nome do banco
+        
         const mapQuick = {
             1: "Quick Massage 1",
             2: "Quick Massage 2",
@@ -65,17 +65,15 @@ async function atualizarSalas() {
         };
 
         cards.forEach(c => {
-            // texto exibido dentro do card ("SALA 1", "SALA 2", ...)
+            
             const numeroSala = c.numero;
 
             const nomeBanco = mapQuick[numeroSala];
             if (!nomeBanco) return;
 
-            // localizar sala correta no banco
             const salaDB = salas.find(s => s.tipo_sala === nomeBanco);
             if (!salaDB) return;
 
-            // verificar se está ocupada
             const ocupada = agendamentos.some(a => a.id_sala === salaDB.id_sala);
 
             if (ocupada) {
