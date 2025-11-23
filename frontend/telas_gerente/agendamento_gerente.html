@@ -85,36 +85,64 @@
       <h3>Novo Agendamento</h3>
       <form id="eventForm">
         <label>
-          Título
-          <input type="text" name="title" required placeholder="Ex: Josué Azevedo – Reflexologia (Sala 03)">
-        </label>
-
-        <label>
-          Data
-          <input type="date" name="date" required>
-        </label>
-
-        <label>
-          Horário
-          <input type="time" name="start" required>
-        </label>
-
-        <label>
-          Serviço
-          <select id="servicos">
-            <option>Selecione...</option>
-            <option value="quick">Quick</option>
-            <option value="maca">Maca</option>
-            <option value="reflexologia">Reflexologia</option>
-            <option value="auriculoterapia">Auriculoterapia</option>
-            <option value="pacote-1">Quick + Reflexologia</option>
-            <option value="pacote-2">Maca + Reflexologia</option>
+          Cliente
+          <select name="id_cliente" id="selectClientes" required>
+            <option value="">Selecione...</option>
           </select>
         </label>
 
         <label>
-          Duração (minutos)
-          <input type="number" name="duration" min="0.25" step="0.25" value="1" required>
+          Colaborador (Massagista)
+          <select name="id_colaborador" id="selectColaboradores" required>
+            <option value="">Selecione...</option>
+          </select>
+        </label>
+
+        <label>
+          Sala
+          <select name="id_sala" id="selectSalas" required>
+            <option value="">Selecione...</option>
+          </select>
+        </label>
+
+        <label>
+          Serviço
+          <select name="id_servico" id="selectServicos" required>
+            <option value="">Selecione...</option>
+          </select>
+        </label>
+
+        <label>
+          Pagamento
+          <select name="pagamento" required>
+            <option value="">Selecione...</option>
+            <option value="PIX">PIX</option>
+            <option value="cartão de crédito">Cartão de crédito</option>
+            <option value="cartão de débito">Cartão de débito</option>
+            <option value="dinheiro">Dinheiro</option>
+          </select>
+        </label>
+
+        <label>
+          Data
+          <input type="date" name="data" required>
+        </label>
+
+        <label>
+          Início
+          <input type="time" name="inicio_atendimento" required>
+        </label>
+
+        <label>
+          Fim
+          <input type="time" name="fim_atendimento" required>
+        </label>
+
+        <label>
+          Unidade
+          <select name="id_unidade" id="selectUnidades" required>
+            <option value="">Selecione...</option>
+          </select>
         </label>
 
         <div class="modal-actions">

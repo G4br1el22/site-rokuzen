@@ -3,6 +3,7 @@ const cors = require('cors');
 const Colaboradores = require('./models/colaboradores');
 const atendimentosRoutes = require('./routes/atendimentos');
 const salasRoutes = require('./routes/salas')
+const listasRoutes = require('./routes/listas');
 
 const app = express();
 app.use(cors());
@@ -32,6 +33,8 @@ app.get('/escala-massagistas', async (req, res) => {
 app.use('/api/atendimentos', atendimentosRoutes);
 
 app.use('/salas', salasRoutes);
+
+app.use('/api/listas', listasRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));

@@ -250,13 +250,18 @@ viewBtns.forEach(b => {
 });
 
 
-btnNew.addEventListener('click', () => {
+btnNew.addEventListener("click", () => {
+  const dateInput = eventForm.querySelector('[name="data"]');
   const dt = new Date(currentDate);
-  const dateInput = eventForm.querySelector('[name="date"]');
-  dateInput.value = dt.toISOString().slice(0, 10);
-  modal.classList.remove('hidden');
-  modal.setAttribute('aria-hidden', 'false');
+
+  if (dateInput) {
+    dateInput.value = dt.toISOString().slice(0, 10);
+  }
+
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
 });
+
 
 btnCancel.addEventListener('click', () => {
   modal.classList.add('hidden');
@@ -270,23 +275,68 @@ modal.addEventListener('click', (e) => {
   }
 });
 
-eventForm.addEventListener('submit', async (e) => {
+function preencherSelect(id, dados, campoId, campoNome) {
+  const select = document.getElementById(id);
+  select.innerHTML = "";
+  dados.forEach(item => {
+    select.innerHTML += `<option value="${item[campoId]}">${item[campoNome]}</option>`;
+  });
+}
+
+eventForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const form = new FormData(eventForm);
-  const ev = {
-    id: Date.now(),
-    title: form.get('title').trim(),
-    date: form.get('date'),
-    start: form.get('start'),
-    duration: parseFloat(form.get('duration')) || 1
+
+  const novoAgendamento = {
+    data: form.get("data"),
+    inicio: form.get("inicio_atendimento"),
+    fim: form.get("fim_atendimento"),
+    pagamento: form.get("pagamento"),
+    id_servico: form.get("id_servico"),
+    id_cliente: form.get("id_cliente"),
+    id_colaborador: form.get("id_colaborador"),
+    id_sala: form.get("id_sala"),
+    id_unidade: form.get("id_unidade")
   };
 
-  saveEventToLocal(ev);
-  modal.classList.add('hidden');
-  modal.setAttribute('aria-hidden', 'true');
-  eventForm.reset();
-  renderAgenda();
+  try {
+    console.log("NOVO AGENDAMENTO:", novoAgendamento);
+    const resp = await fetch("http://localhost:3000/api/listas/novoAgendamento", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(novoAgendamento)
+    });
+
+    if (!resp.ok) throw new Error("Erro no POST");
+
+    modal.classList.add("hidden");
+    eventForm.reset();
+
+    carregarAgendamentos(); // Atualiza a agenda
+  } catch (err) {
+    console.error("Erro ao salvar agendamento:", err);
+    alert("Erro ao salvar agendamento. Veja o console.");
+  }
 });
+
+async function carregarSelects() {
+  const idUnidade = localStorage.getItem("id_unidade");
+
+  const [clientes, colaboradores, salas, servicos, unidades] = await Promise.all([
+    fetch("http://localhost:3000/api/listas/clientes").then(r => r.json()),
+    fetch(`http://localhost:3000/api/listas/colaboradores/${idUnidade}`).then(r => r.json()),
+    fetch(`http://localhost:3000/api/listas/salas/${idUnidade}`).then(r => r.json()),
+    fetch("http://localhost:3000/api/listas/servicos").then(r => r.json()),
+    fetch("http://localhost:3000/api/listas/unidades").then(r => r.json()),
+  ]);
+
+  preencherSelect("selectClientes", clientes, "id_cliente", "nome_cliente");
+  preencherSelect("selectColaboradores", colaboradores, "id_colaborador", "nome_colaborador");
+  preencherSelect("selectSalas", salas, "id_sala", "tipo_sala");
+  preencherSelect("selectServicos", servicos, "id_servico", "tipo_servico");
+  preencherSelect("selectUnidades", unidades, "id_unidade", "nome_unidade");
+}
 
 async function carregarAgendamentos() {
   const agendaDiv = document.getElementById('agendaContent');
@@ -359,4 +409,5 @@ async function carregarAgendamentos() {
 window.addEventListener('load', () => {
   renderAgenda();
   carregarAgendamentos();
+  carregarSelects();
 });
