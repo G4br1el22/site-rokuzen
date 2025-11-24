@@ -26,15 +26,18 @@ body {
 
 .brand .logo {
   height: 54px;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 36px;
+  margin-top: 18px;
 }
 
 .menu {
   display: flex;
   align-items: center;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 18px;
+  margin-left: 36px;
+  margin-right: 18px;
 }
 
 .menu .menu-item {
