@@ -1,24 +1,23 @@
-// banco de dados falso. 
-// Os IDs (1, 2, 3) correspondem aos 'data-id' do perfis.html
+// banco de dados falso.
 const fakeDatabase = {
   "1": { 
     name: "Ana Banana", 
-    role: "Massoterapeuta", 
+    email: "ana@exemplo.com",
     photo: "/site-rokuzen/frontend/images/logo+ava/avatar_default.jpg" 
   },
   "2": { 
     name: "João Silva", 
-    role: "Acupunturista", 
+    email: "joao@exemplo.com",
     photo: "/site-rokuzen/frontend/images/logo+ava/avatar_default.jpg" 
   },
   "3": { 
     name: "Luiza Souza", 
-    role: "Recepcionista", 
+    email: "luiza@exemplo.com",
     photo: "/site-rokuzen/frontend/images/logo+ava/avatar_default.jpg" 
   },
   "4": { 
     name: "Marcos Pereira", 
-    role: "Massoterapeuta", 
+    email: "marcos@exemplo.com",
     photo: "/site-rokuzen/frontend/images/logo+ava/avatar_default.jpg" 
   }
 };
@@ -26,32 +25,28 @@ const fakeDatabase = {
 document.addEventListener('DOMContentLoaded', () => {
 
   const nameInput = document.getElementById('nameInput');
-  const roleInput = document.getElementById('roleInput');
+  const emailInput = document.getElementById('emailInput');
   const profilePic = document.getElementById('profilePic');
   const headerIcon = document.querySelector('.profile-icon'); 
-
 
   const params = new URLSearchParams(window.location.search);
   const userId = params.get('id');
 
-  
   const userData = fakeDatabase[userId];
 
-  
   if (userData) {
     nameInput.value = userData.name;
-    roleInput.value = userData.role;
+    emailInput.value = userData.email;
     profilePic.src = userData.photo;
     headerIcon.src = userData.photo;
   } else {
     nameInput.value = "Usuário não encontrado";
-    roleInput.value = "Cargo desconhecido";
+    emailInput.value = "Email não encontrado";
   }
 
   const editBtn = document.getElementById('editBtn');
-  const inputs = document.querySelectorAll('input[type="text"]');
+  const inputs = document.querySelectorAll('#nameInput, #emailInput');
   const photoInput = document.getElementById('photoUpload');
-
 
   let editMode = false;
 
@@ -66,11 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
       editBtn.textContent = "Editar Perfil";
       inputs.forEach(i => i.disabled = true);
       photoInput.disabled = true;
-      
-   
+
       alert("Alterações salvas (simulação)");
-      
-    
     }
   });
 
@@ -81,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.onload = (event) => {
         const newPhotoURL = event.target.result;
         profilePic.src = newPhotoURL;
-        headerIcon.src = newPhotoURL; 
+        headerIcon.src = newPhotoURL;
       };
       reader.readAsDataURL(file);
     }

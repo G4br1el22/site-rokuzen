@@ -19,7 +19,6 @@
       <button id="editBtn">Editar Perfil</button>
     </aside>
 
-
     <section class="main">
       <header>
         <div class="header-left">
@@ -28,11 +27,10 @@
           </button>
           <h2>EDITAR PERFIL</h2>
         </div>
-      <a href="/frontend/telas_gerente/agendamento_gerente.html">
-        <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="perfil" class="profile-icon" />
-      </a>
+        <a href="/frontend/telas_gerente/agendamento_gerente.html">
+          <img src="/frontend/images/logo+ava/avatar_default.jpg" alt="perfil" class="profile-icon" />
+        </a>
       </header>
-      
 
       <div class="profile-section">
         <h3>Foto de Perfil</h3>
@@ -47,18 +45,20 @@
         </div>
 
         <div class="input-group">
-          <label for="roleInput">Alterar cargo</label>
-          <input type="text" id="roleInput" value="Massoterapeuta" disabled />
+          <label for="emailInput">Alterar email</label>
+          <input type="email" id="emailInput" value="email@exemplo.com" disabled placeholder="Digite seu email">
         </div>
       </div>
     </section>
   </div>
+
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
+
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
