@@ -24,9 +24,8 @@
 
             <nav class="menu">
                 <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
-                <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
-                    individual</a>
-                <a class="menu-item active" href="#">Salas</a>
+                <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala individual</a>
+                <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
 
                 <div class="user-menu">
                     <div class="avatar" id="avatar" title="Perfil">
@@ -44,6 +43,7 @@
                 </div>
             </nav>
         </header>
+
         <main>
             <section class="texto">
                 <h1>Salas de Macas</h1>
@@ -51,7 +51,7 @@
 
             <section class="cards">
 
-                <div class="card">
+                <div class="card" data-sala="1">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Mooca Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Mooca Plaza Shopping</span>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" data-sala="2">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Mooca Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Mooca Plaza Shopping</span>
@@ -67,18 +67,18 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" data-sala="3">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Mooca Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Mooca Plaza Shopping</span>
                         <h2>SALA 3</h2>
                     </div>
                 </div>
+
+            </section>
+        </main>
     </div>
 
-    </section>
-    </main>
-    </div>
     <footer class="full-width">
         <div class="controles">
             <div class="linha"></div>
@@ -115,19 +115,35 @@
 
     </footer>
 
-    <!--Vlibras-->
+    <!-- Vlibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
     <script src="/frontend/assets/js/header.js"></script>
+
+    
+    <script>
+        const cards = document.querySelectorAll(".card");
+
+        cards.forEach(card => {
+            const salaId = card.dataset.sala;
+            card.style.cursor = "pointer";
+
+            card.addEventListener("click", () => {
+                window.location.href = `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${salaId}`;
+            });
+        });
+    </script>
+
 </body>
 
 </html>

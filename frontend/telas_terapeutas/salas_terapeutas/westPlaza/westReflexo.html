@@ -24,8 +24,7 @@
 
       <nav class="menu">
         <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
-        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
-          individual</a>
+        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala individual</a>
         <a class="menu-item active" href="#">Salas</a>
 
         <div class="user-menu">
@@ -44,6 +43,7 @@
         </div>
       </nav>
     </header>
+
     <main>
       <section class="texto">
         <h1>Poltronas de&nbsp;Reflexologia</h1>
@@ -71,6 +71,7 @@
 
     </main>
   </div>
+
   <footer>
     <div class="controles">
       <div class="linha"></div>
@@ -119,6 +120,19 @@
   </script>
 
   <script src="/frontend/assets/js/header.js"></script>
+
+  
+  <script>
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        const sala = index + 1;
+        window.location.href = `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${sala}`;
+      });
+    });
+  </script>
+
 </body>
 
 </html>

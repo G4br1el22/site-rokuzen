@@ -2,132 +2,142 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>West Plaza Shopping | Sala de macas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>West Plaza Shopping | Sala de macas</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@400;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="/frontend/assets/css/westPlaza_maca.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/frontend/assets/css/westPlaza_maca.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <div class="container">
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <a href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">
+          <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
+        </a>
+      </div>
 
-        <header class="topbar">
-            <div class="brand">
-                <a href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">
-                    <img src="/frontend/images/logo+ava/logo_png.png" alt="Rokuzen logo" class="logo">
-                </a>
-            </div>
+      <nav class="menu">
+        <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
+        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala individual</a>
+        <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
 
-            <nav class="menu">
-                <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
-                <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
-                    individual</a>
-                <a class="menu-item active" href="#">Salas</a>
+        <div class="user-menu">
+          <div class="avatar" id="avatar" title="Perfil">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
+              <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
+              <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
+            </svg>
+          </div>
 
-                <div class="user-menu">
-                    <div class="avatar" id="avatar" title="Perfil">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="12" fill="#EAF0E1" />
-                            <circle cx="12" cy="9" r="3.2" fill="#C6D9A2" />
-                            <path d="M4 20c1.8-3 5.2-4.5 8-4.5s6.2 1.5 8 4.5" fill="#C6D9A2" />
-                        </svg>
-                    </div>
+          <div class="dropdown" id="dropdown">
+            <button id="editarPerfil">Editar Perfil</button>
+            <button id="logout">Logout</button>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-                    <div class="dropdown" id="dropdown">
-                        <button id="editarPerfil">Editar Perfil</button>
-                        <button id="logout">Logout</button>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <main>
-            <section class="texto">
-                <h1>Sala de Macas</h1>
-            </section>
+    <main>
+      <section class="texto">
+        <h1>Sala de Macas</h1>
+      </section>
 
-            <section class="cards">
+      <section class="cards">
+        <div class="card" data-sala="1">
+          <img src="/frontend/images/rooms/sala_maca.jpg" alt="West Plaza Shopping" />
+          <div class="info">
+            <span class="sub">West Plaza Shopping</span>
+            <h2>SALA 1</h2>
+          </div>
+        </div>
 
-                <div class="card">
-                    <img src="/frontend/images/rooms/sala_maca.jpg" alt="West Plaza Shopping" />
-                    <div class="info">
-                        <span class="sub">West Plaza Shopping</span>
-                        <h2>SALA 1</h2>
-                    </div>
-                </div>
+        <div class="card" data-sala="2">
+          <img src="/frontend/images/rooms/sala_maca.jpg" alt="West Plaza Shopping" />
+          <div class="info">
+            <span class="sub">West Plaza Shopping</span>
+            <h2>SALA 2</h2>
+          </div>
+        </div>
 
-                <div class="card">
-                    <img src="/frontend/images/rooms/sala_maca.jpg" alt="West Plaza Shopping" />
-                    <div class="info">
-                        <span class="sub">West Plaza Shopping</span>
-                        <h2>SALA 2</h2>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="/frontend/images/rooms/sala_maca.jpg" alt="West Plaza Shopping" />
-                    <div class="info">
-                        <span class="sub">West Plaza Shopping</span>
-                        <h2>SALA 3</h2>
-                    </div>
-                </div>
-    </div>
-
-    </section>
+        <div class="card" data-sala="3">
+          <img src="/frontend/images/rooms/sala_maca.jpg" alt="West Plaza Shopping" />
+          <div class="info">
+            <span class="sub">West Plaza Shopping</span>
+            <h2>SALA 3</h2>
+          </div>
+        </div>
+      </section>
     </main>
+  </div>
+
+  <footer class="full-width">
+    <div class="controles">
+      <div class="linha"></div>
     </div>
-    <footer class="full-width">
-        <div class="controles">
-            <div class="linha"></div>
-        </div>
 
-        <div class="footer-content">
-            <div class="social-icons">
-                <a href="https://www.facebook.com/rokuzen.massagem">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/rokuzen.massagem/#">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/rokuzen/?trk=top_nav_home">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="mailto:contato@rokuzen.com.br">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
-            </div>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="https://www.facebook.com/rokuzen.massagem">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/rokuzen.massagem/#">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/rokuzen/?trk=top_nav_home">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:contato@rokuzen.com.br">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
 
-            <div class="footer-unidades">
-                <h3>Unidades</h3>
-                <p><strong>Grand Plaza Shopping - Santo André</strong><br>WhatsApp: +55 11 9 1665 7900</p>
-                <p><strong>Golden Square Shopping - São Bernardo</strong><br>WhatsApp: +55 11 9 4749 5306</p>
-                <p><strong>Mooca Plaza Shopping - São Paulo</strong><br>WhatsApp: +55 11 9 5084 1087</p>
-                <p><strong>Shopping West Plaza - São Paulo</strong><br>WhatsApp: +55 11 9 1942 7901</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2025 ROKUZEN</p>
-        </div>
-
-    </footer>
-
-    <!--Vlibras-->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
+      <div class="footer-unidades">
+        <h3>Unidades</h3>
+        <p><strong>Grand Plaza Shopping - Santo André</strong><br>WhatsApp: +55 11 9 1665 7900</p>
+        <p><strong>Golden Square Shopping - São Bernardo</strong><br>WhatsApp: +55 11 9 4749 5306</p>
+        <p><strong>Mooca Plaza Shopping - São Paulo</strong><br>WhatsApp: +55 11 9 5084 1087</p>
+        <p><strong>Shopping West Plaza - São Paulo</strong><br>WhatsApp: +55 11 9 1942 7901</p>
+      </div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
 
-    <script src="/frontend/assets/js/header.js"></script>
+    <div class="footer-bottom">
+      <p>© 2025 ROKUZEN</p>
+    </div>
+  </footer>
+
+  <!-- Vlibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script src="/frontend/assets/js/header.js"></script>
+
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+      const salaId = card.dataset.sala;
+      card.style.cursor = "pointer";
+
+      card.addEventListener("click", () => {
+        window.location.href = `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${salaId}`;
+      });
+    });
+  </script>
+
 </body>
 
 </html>

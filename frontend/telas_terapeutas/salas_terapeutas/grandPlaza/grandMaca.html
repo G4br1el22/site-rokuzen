@@ -26,7 +26,7 @@
                 <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
                 <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
                     individual</a>
-                <a class="menu-item active" href="#">Salas</a>
+                <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
 
                 <div class="user-menu">
                     <div class="avatar" id="avatar" title="Perfil">
@@ -44,6 +44,7 @@
                 </div>
             </nav>
         </header>
+
         <main>
             <section class="texto">
                 <h1>Sala de Macas</h1>
@@ -51,7 +52,7 @@
 
             <section class="cards">
 
-                <div class="card">
+                <div class="card sala-card" data-sala="1">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
@@ -59,7 +60,8 @@
                     </div>
                 </div>
 
-                <div class="card">
+
+                <div class="card sala-card" data-sala="2">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
@@ -67,23 +69,26 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card sala-card" data-sala="3">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
                         <h2>SALA 3</h2>
                     </div>
                 </div>
-                <div class="card">
+
+                <div class="card sala-card" data-sala="4">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
                         <h2>SALA 4</h2>
                     </div>
                 </div>
+
             </section>
         </main>
     </div>
+
     <footer>
         <div class="controles">
             <div class="linha"></div>
@@ -120,6 +125,7 @@
 
     </footer>
 
+    <!-- VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
@@ -132,6 +138,18 @@
     </script>
 
     <script src="/frontend/assets/js/header.js"></script>
+
+   
+    <script>
+        document.querySelectorAll('.sala-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const sala = card.getAttribute('data-sala');
+                window.location.href =
+                    `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${sala}`;
+            });
+        });
+    </script>
+
 </body>
 
 </html>
