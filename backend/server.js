@@ -4,6 +4,7 @@ const Colaboradores = require('./models/colaboradores');
 const atendimentosRoutes = require('./routes/atendimentos');
 const salasRoutes = require('./routes/salas')
 const listasRoutes = require('./routes/listas');
+const clientesRoutes = require('./routes/clientes')
 
 const app = express();
 app.use(cors());
@@ -35,6 +36,8 @@ app.use('/api/atendimentos', atendimentosRoutes);
 app.use('/salas', salasRoutes);
 
 app.use('/api/listas', listasRoutes);
+
+app.use('/api/clientes', clientesRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
