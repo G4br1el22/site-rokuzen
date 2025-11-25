@@ -13,9 +13,7 @@
 </head>
 
 <body>
-
   <div class="container">
-
     <header class="topbar">
       <div class="brand">
         <a href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">
@@ -25,7 +23,8 @@
 
       <nav class="menu">
         <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
-        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala individual</a>
+        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
+          individual</a>
         <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
 
         <div class="user-menu">
@@ -44,7 +43,6 @@
         </div>
       </nav>
     </header>
-
     <main>
       <section class="texto">
         <h1>Cadeiras Quick</h1>
@@ -84,11 +82,12 @@
           </div>
         </div>
 
-      </section>
-    </main>
+  </div>
 
-  </div> 
+  </section>
 
+  </main>
+  </div>
   <footer class="full-width">
     <div class="controles">
       <div class="linha"></div>
@@ -122,33 +121,22 @@
     <div class="footer-bottom">
       <p>© 2025 ROKUZEN</p>
     </div>
+
   </footer>
 
-  <!-- Vlibras -->
+  <!--Vlibras-->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
-
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
   <script src="/frontend/assets/js/header.js"></script>
-
 </body>
-</html>
-  
-  <script>
-    const cards = document.querySelectorAll(".card");
 
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        const sala = card.getAttribute("data-sala");
-        window.location.href = `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${sala}`;
-      });
-    });
-  </script>
+</html>

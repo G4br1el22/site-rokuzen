@@ -44,7 +44,6 @@
                 </div>
             </nav>
         </header>
-
         <main>
             <section class="texto">
                 <h1>Sala de Macas</h1>
@@ -52,7 +51,7 @@
 
             <section class="cards">
 
-                <div class="card sala-card" data-sala="1">
+                <div class="card">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
@@ -60,8 +59,7 @@
                     </div>
                 </div>
 
-
-                <div class="card sala-card" data-sala="2">
+                <div class="card">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
@@ -69,26 +67,23 @@
                     </div>
                 </div>
 
-                <div class="card sala-card" data-sala="3">
+                <div class="card">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
                         <h2>SALA 3</h2>
                     </div>
                 </div>
-
-                <div class="card sala-card" data-sala="4">
+                <div class="card">
                     <img src="/frontend/images/rooms/sala_maca.jpg" alt="Grand Plaza Shopping" />
                     <div class="info">
                         <span class="sub">Grand Plaza Shopping</span>
                         <h2>SALA 4</h2>
                     </div>
                 </div>
-
             </section>
         </main>
     </div>
-
     <footer>
         <div class="controles">
             <div class="linha"></div>
@@ -125,7 +120,6 @@
 
     </footer>
 
-    <!-- VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
@@ -138,18 +132,6 @@
     </script>
 
     <script src="/frontend/assets/js/header.js"></script>
-
-   
-    <script>
-        document.querySelectorAll('.sala-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const sala = card.getAttribute('data-sala');
-                window.location.href =
-                    `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${sala}`;
-            });
-        });
-    </script>
-
 </body>
 
 </html>

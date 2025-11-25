@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grand Plaza Shopping | Poltronas de Reflexlogia</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Albert+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="/frontend/assets/css/grandPlaza_reflexo.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -23,8 +24,9 @@
 
       <nav class="menu">
         <a class="menu-item" href="/frontend/telas_terapeutas/relatorio/relatorios.html">Relatórios</a>
-        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala individual</a>
-        <a class="menu-item active" href="#">Salas</a>
+        <a class="menu-item" href="/frontend/telas_terapeutas/escala/escala_individual.html">Escala
+          individual</a>
+        <a class="menu-item active" href="/frontend/telas_terapeutas/escolha_a_sala/unidades.html">Salas</a>
 
         <div class="user-menu">
           <div class="avatar" id="avatar" title="Perfil">
@@ -42,7 +44,6 @@
         </div>
       </nav>
     </header>
-
     <main>
       <section class="texto">
         <h1>Poltronas <br>de Reflexologia</h1>
@@ -50,8 +51,7 @@
 
       <section class="cards">
 
-       
-        <div class="card" data-sala="1">
+        <div class="card">
           <img src="/frontend/images/rooms/reflexo.jpg" alt="Grand Plaza Shopping" />
           <div class="info">
             <span class="sub">Grand Plaza Shopping</span>
@@ -59,19 +59,19 @@
           </div>
         </div>
 
-       
-        <div class="card" data-sala="2">
-          <img src="/frontend/images/rooms/reflexo.jpg" alt="Grand Plaza Shopping" />
+        <div class="card">
+          <img src="/frontend/images/rooms/reflexo.jpg" alt="Golden Square Shopping" />
           <div class="info">
             <span class="sub">Grand Plaza Shopping</span>
             <h2>SALA 2</h2>
           </div>
         </div>
 
+
       </section>
+
     </main>
   </div>
-
   <footer>
     <div class="controles">
       <div class="linha"></div>
@@ -107,35 +107,19 @@
     </div>
   </footer>
 
-  <!-- Vlibras -->
+  <!--Vlibras-->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
-
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
   <script src="/frontend/assets/js/header.js"></script>
-
-  
-  <script>
-    const cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-      const salaId = card.dataset.sala;
-      card.style.cursor = "pointer";
-
-      card.addEventListener("click", () => {
-        window.location.href = `/frontend/telas_terapeutas/iniciar/temporizador.html?sala=${salaId}`;
-      });
-    });
-  </script>
-
 </body>
 
 </html>
