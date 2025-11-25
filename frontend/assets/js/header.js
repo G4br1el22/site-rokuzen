@@ -22,14 +22,12 @@ document.getElementById('logout').addEventListener('click', () => {
 function getPageInfo() {
     const path = window.location.pathname;
 
-    
     let unidadeId;
     if (path.includes("goldenSquare")) unidadeId = 2;
     if (path.includes("grandPlaza")) unidadeId = 1;
     if (path.includes("mooca")) unidadeId = 3;
     if (path.includes("westPlaza")) unidadeId = 4;
 
-    
     let tipoSala;
     if (path.includes("maca")) tipoSala = "Maca";
     if (path.includes("quick")) tipoSala = "Quick Massage";
@@ -40,10 +38,32 @@ function getPageInfo() {
 
 function getCards() {
     return [...document.querySelectorAll(".card")].map(card => {
-        const texto = card.querySelector("h2").textContent; 
+        const texto = card.querySelector("h2").textContent;
         const numero = parseInt(texto.replace("SALA", "").trim());
         return { card, numero };
     });
+}
+
+/* 🔥 Prefixos reais de cada unidade */
+function getPrefixoUnidade(unidadeId) {
+    const map = {
+        1: "GRAND",
+        2: "GOLDEN",
+        3: "MOOCA",
+        4: "WEST"
+    };
+    return map[unidadeId];
+}
+
+/* 🔥 Gera o nome EXATAMENTE como está no banco */
+function getNomeSala(tipoSala, numero, unidadeId) {
+    const prefixo = getPrefixoUnidade(unidadeId);
+
+    if (tipoSala === "Maca") return `${prefixo} - Maca ${numero}`;
+    if (tipoSala === "Quick Massage") return `${prefixo} - Quick ${numero}`;
+    if (tipoSala === "Poltrona Reflexologia") return `${prefixo} - Poltrona ${numero}`;
+
+    return null;
 }
 
 async function atualizarSalas() {
@@ -57,18 +77,10 @@ async function atualizarSalas() {
         const resAg = await fetch(`http://localhost:3000/salas/agendamentos/${unidadeId}`);
         const agendamentos = await resAg.json();
 
-        
-        const mapQuick = {
-            1: "Quick Massage 1",
-            2: "Quick Massage 2",
-            3: "Quick Massage 3"
-        };
-
         cards.forEach(c => {
-            
             const numeroSala = c.numero;
 
-            const nomeBanco = mapQuick[numeroSala];
+            const nomeBanco = getNomeSala(tipoSala, numeroSala, unidadeId);
             if (!nomeBanco) return;
 
             const salaDB = salas.find(s => s.tipo_sala === nomeBanco);
